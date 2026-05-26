@@ -1,8 +1,33 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
+import ui1 from "./image/ui1.png";
 import ui2 from "./image/ui2.png";
+import ui3 from "./image/ui3.png";
+import soc1 from "./image/soc1.png";
+import soc2 from "./image/soc2.png";
+import soc3 from "./image/soc3.png";
+import web1 from "./image/web1.png";
+import web2 from "./image/web2.png";
+import web3 from "./image/web3.png";
+
 // ── DATA ──────────────────────────────────────────────
-const NAV_LINKS = ["home","skills", "experience", "projects", "certs", "my design", "contact"];
+const NAV_LINKS = [
+  { label: "home",       href: "#home" },
+  { label: "skills",     href: "#skills" },
+  { label: "experience", href: "#experience" },
+  { label: "projects",   href: "#projects" },
+  { label: "certs",      href: "#certs" },
+  {
+    label: "my design",
+    href: "#my-design",
+    dropdown: [
+      { label: "My Design",   href: "#my-design",   internal: false },
+      { label: "Canva Design",  href: "/canva",        internal: true  },
+      { label: "QCredit ADs", href: "/qcredit-ads",  internal: true  },
+    ],
+  },
+  { label: "contact", href: "#contact" },
+];
 
 const SKILLS = [
   {
@@ -27,7 +52,6 @@ const EXPERIENCES = [
     role: "Graphic Designer & Marketing Officer",
     company: "QCredit Corp.",
     period: "Mar 2024 – Present",
-     image: "/src/exp4.png",
     items: [
       "Designed promotional creatives for Facebook, TikTok, and YouTube campaigns",
       'Created engaging video content for "Kwentong QCredit" customer stories',
@@ -111,11 +135,9 @@ const CONTACT_LINKS = [
   { icon: "📱", label: "Phone", value: "0975-682-5216", href: "tel:09756825216" },
   { icon: "🎨", label: "Behance", value: "behance.net/familyreplan", href: "https://www.behance.net/familyreplan" },
   { icon: "💾", label: "GitHub", value: "github.com/rareplan", href: "https://github.com/rareplan" },
-  { icon: "🌐", label: "Portfolio", value: "myportfolio-rareplan.onrender.com", href: "https://myportfolio-rareplan.onrender.com" },
+ 
 ];
 
-// ── MY DESIGN DATA ─────────────────────────────────────
-// 🖼️ Ilagay ang iyong images sa: public/designs/mvl/, public/designs/socmed/, public/designs/lenscraft/
 const CASE_STUDIES = [
   {
     id: "mvl",
@@ -126,10 +148,7 @@ const CASE_STUDIES = [
     color: "#7c5cfc",
     role: "Lead UI/UX Designer",
     tools: ["Figma"],
-    // 🖼️ 5 images — palitan ng iyong actual filenames
-    images: [
-  ui2,
-],
+    images: [ui1, ui2, ui3],
     overview: "Market vendors often face financial gaps but find traditional banking processes slow or intimidating. They need a fast, reliable, and accessible way to manage micro-loans while working in a fast-paced environment.",
     goal: "To design a mobile-first solution that simplifies the loan application process and provides a clear, real-time view of financial status.",
     solution: "The MVL app focuses on a minimalist and functional approach. It minimizes the cognitive load for users who may be multitasking or are not tech-savvy by using high-contrast elements and a straightforward navigation flow.",
@@ -149,79 +168,37 @@ const CASE_STUDIES = [
     color: "#00d9ff",
     role: "UI/UX Designer",
     tools: ["Figma", "React", "Styled Components"],
-    images: [
-      "/designs/socmed/socmed-1.jpg",
-      "/designs/socmed/socmed-2.jpg",
-      "/designs/socmed/socmed-3.jpg",
-      "/designs/socmed/socmed-4.jpg",
-      "/designs/socmed/socmed-5.jpg",
-    ],
+    images: [soc1, soc2, soc3],
     overview: "Many social media management tools are cluttered and overwhelming for new creators. Users need a platform that feels creative yet professional and data-driven.",
-
-goal: 'Create a "minimalist-vibrant" interface that uses soft gradients to reduce cognitive load while maintaining a creative energy for content creators.',
-
-solution: "A split-screen onboarding layout paired with a card-based dashboard. One side focuses on the task (form), while the other reinforces the brand value — keeping users motivated throughout.",
-
-highlights: [
-  { icon: "🎨", label: "Color Theory", text: "Teal for stability and calm, Coral/Soft Orange for energy and action — guiding the user's eye to CTAs." },
-  { icon: "📊", label: "Data Dashboard", text: "Card-based layout lets users distinguish Follower Growth, Weekly Revenue, and Recent Posts at a glance." },
-  { icon: "🧭", label: "Navigation", text: "Clean vertical sidebar lets users switch contexts without losing their place in the workflow." },
-],
-
-principles: [
-  "Engaging onboarding with split-screen layout",
-  "Semi-transparent chart fills matching the airy UI feel",
-  "Modular information architecture using cards"
-],
-},
-{
-  id: "lenscraft",
-  num: "03",
-  tag: "Landing Page",
-  title: "LensCraft",
-  subtitle: "An Educational Landing Page for Photography Enthusiasts",
-  color: "#ff6b6b",
-  role: "UI/UX Designer & Researcher",
-  tools: ["Figma"],
-
-  images: [
-    "/designs/lenscraft/lenscraft-1.jpg",
-    "/designs/lenscraft/lenscraft-2.jpg",
-    "/designs/lenscraft/lenscraft-3.jpg",
-    "/designs/lenscraft/lenscraft-4.jpg",
-    "/designs/lenscraft/lenscraft-5.jpg",
-  ],
-
-  overview: "Photography can be intimidating for beginners due to technical jargon (ISO, sensor sizes, etc.). The challenge was organizing a large amount of educational content without making the page feel like a boring textbook.",
-
-  goal: "Create a visually immersive experience that simplifies technical photography concepts into an easy-to-digest single-page layout.",
-
-  solution: "Used F-pattern and Z-pattern layout to guide users from the high-impact hero image down to specific technical details, connecting gear to creative results through a Featured Photographers section.",
-
-  highlights: [
-    {
-      icon: "🏗️",
-      label: "Information Architecture",
-      text: "F-pattern and Z-pattern layouts guide users naturally from the hero section down to technical details."
-    },
-    {
-      icon: "🌑",
-      label: "Dark Mode Aesthetic",
-      text: "Deep blues and teals mimic the feeling of a darkroom or premium camera body — sophisticated and professional."
-    },
-    {
-      icon: "🖼️",
-      label: "Visual Elements",
-      text: "High-quality product shots with star ratings give it a familiar e-commerce feel, lowering the learning curve."
-    },
-  ],
-
-  principles: [
-    "Card-based info for scannable content",
-    "Direct CTA turning education into lead generation",
-    "Micro-copy making photography feel accessible to everyone"
-  ],
-},
+    goal: 'Create a "minimalist-vibrant" interface that uses soft gradients to reduce cognitive load while maintaining a creative energy for content creators.',
+    solution: "A split-screen onboarding layout paired with a card-based dashboard. One side focuses on the task (form), while the other reinforces the brand value — keeping users motivated throughout.",
+    highlights: [
+      { icon: "🎨", label: "Color Theory", text: "Teal for stability and calm, Coral/Soft Orange for energy and action — guiding the user's eye to CTAs." },
+      { icon: "📊", label: "Data Dashboard", text: "Card-based layout lets users distinguish Follower Growth, Weekly Revenue, and Recent Posts at a glance." },
+      { icon: "🧭", label: "Navigation", text: "Clean vertical sidebar lets users switch contexts without losing their place in the workflow." },
+    ],
+    principles: ["Engaging onboarding with split-screen layout", "Semi-transparent chart fills matching the airy UI feel", "Modular information architecture using cards"],
+  },
+  {
+    id: "lenscraft",
+    num: "03",
+    tag: "Landing Page",
+    title: "LensCraft",
+    subtitle: "An Educational Landing Page for Photography Enthusiasts",
+    color: "#ff6b6b",
+    role: "UI/UX Designer & Researcher",
+    tools: ["Figma"],
+    images: [web1, web2, web3],
+    overview: "Photography can be intimidating for beginners due to technical jargon (ISO, sensor sizes, etc.). The challenge was organizing a large amount of educational content without making the page feel like a boring textbook.",
+    goal: "Create a visually immersive experience that simplifies technical photography concepts into an easy-to-digest single-page layout.",
+    solution: "Used F-pattern and Z-pattern layout to guide users from the high-impact hero image down to specific technical details, connecting gear to creative results through a Featured Photographers section.",
+    highlights: [
+      { icon: "🏗️", label: "Information Architecture", text: "F-pattern and Z-pattern layouts guide users naturally from the hero section down to technical details." },
+      { icon: "🌑", label: "Dark Mode Aesthetic", text: "Deep blues and teals mimic the feeling of a darkroom or premium camera body — sophisticated and professional." },
+      { icon: "🖼️", label: "Visual Elements", text: "High-quality product shots with star ratings give it a familiar e-commerce feel, lowering the learning curve." },
+    ],
+    principles: ["Card-based info for scannable content", "Direct CTA turning education into lead generation", "Micro-copy making photography feel accessible to everyone"],
+  },
 ];
 
 // ── HOOKS ─────────────────────────────────────────────
@@ -241,8 +218,66 @@ function useReveal() {
   return [ref, visible];
 }
 
+// ── DROPDOWN NAV ITEM ─────────────────────────────────
+function NavDropdown({ item, onClose }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  // Close when clicking outside
+  useEffect(() => {
+    const handler = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  return (
+    <li className="nav-dropdown-wrap" ref={ref}>
+      <button
+        className="nav-dropdown-trigger"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+      >
+        {item.label}
+        <svg
+          className={`nav-caret ${open ? "open" : ""}`}
+          width="10" height="10"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        >
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+
+      {open && (
+        <ul className="nav-dropdown-menu">
+          {item.dropdown.map((d) => (
+            <li key={d.label}>
+              <a
+                href={d.href}
+                className="nav-dropdown-item"
+                target={d.external ? "_blank" : undefined}
+                rel={d.external ? "noreferrer" : undefined}
+                onClick={() => { setOpen(false); onClose(); }}
+              >
+                {d.external && <span className="nav-dropdown-ext">↗</span>}
+                {d.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+}
+
 // ── NAVBAR ────────────────────────────────────────────
 function Navbar({ scrolled, menuOpen, setMenuOpen }) {
+  const [mobileExpanded, setMobileExpanded] = useState(false);
+
   useEffect(() => {
     const onResize = () => { if (window.innerWidth > 768) setMenuOpen(false); };
     window.addEventListener("resize", onResize);
@@ -254,17 +289,30 @@ function Navbar({ scrolled, menuOpen, setMenuOpen }) {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
+  const closeAll = () => {
+    setMenuOpen(false);
+    setMobileExpanded(false);
+  };
+
   return (
     <>
       <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-        <a href="#home" className="nav-logo" onClick={() => setMenuOpen(false)}>RAR</a>
+        <a href="#home" className="nav-logo" onClick={closeAll}>R.A.</a>
+
+        {/* Desktop nav */}
         <ul className="nav-links-desktop">
-          {NAV_LINKS.map((link) => (
-            <li key={link}>
-              <a href={`#${link.replace(" ", "-")}`}>{link}</a>
-            </li>
-          ))}
+          {NAV_LINKS.map((item) =>
+            item.dropdown ? (
+              <NavDropdown key={item.label} item={item} onClose={closeAll} />
+            ) : (
+              <li key={item.label}>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            )
+          )}
         </ul>
+
+        {/* Hamburger */}
         <button
           className={`hamburger ${menuOpen ? "open" : ""}`}
           onClick={() => setMenuOpen((o) => !o)}
@@ -275,19 +323,58 @@ function Navbar({ scrolled, menuOpen, setMenuOpen }) {
         </button>
       </nav>
 
+      {/* Mobile drawer */}
       <div className={`mobile-drawer ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
         <ul className="mobile-nav-links">
-          {NAV_LINKS.map((link) => (
-            <li key={link}>
-              <a href={`#${link.replace(" ", "-")}`} onClick={() => setMenuOpen(false)}>
-                {link}
-              </a>
-            </li>
-          ))}
+          {NAV_LINKS.map((item) =>
+            item.dropdown ? (
+              <li key={item.label} className="mobile-dropdown-wrap">
+                {/* Toggle button */}
+                <button
+                  className="mobile-dropdown-trigger"
+                  onClick={() => setMobileExpanded((o) => !o)}
+                >
+                  {item.label}
+                  <svg
+                    className={`nav-caret ${mobileExpanded ? "open" : ""}`}
+                    width="12" height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+
+                {/* Sub-items */}
+                <ul className={`mobile-sub-links ${mobileExpanded ? "open" : ""}`}>
+                  {item.dropdown.map((d) => (
+                    <li key={d.label}>
+                      <a
+                        href={d.href}
+                        target={d.external ? "_blank" : undefined}
+                        rel={d.external ? "noreferrer" : undefined}
+                        onClick={closeAll}
+                        className="mobile-sub-link"
+                      >
+                        {d.external && <span className="nav-dropdown-ext">↗</span>}
+                        {d.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li key={item.label}>
+                <a href={item.href} onClick={closeAll}>{item.label}</a>
+              </li>
+            )
+          )}
         </ul>
       </div>
 
-      {menuOpen && <div className="mobile-backdrop" onClick={() => setMenuOpen(false)} />}
+      {menuOpen && <div className="mobile-backdrop" onClick={closeAll} />}
     </>
   );
 }
@@ -316,7 +403,8 @@ function Hero() {
           <div className="hero-social">
             <a href="https://www.behance.net/familyreplan" target="_blank" rel="noreferrer" className="social-link"><span>Be</span> Behance</a>
             <a href="https://github.com/rareplan" target="_blank" rel="noreferrer" className="social-link"><span>GH</span> GitHub</a>
-            <a href="https://myportfolio-rareplan.onrender.com" target="_blank" rel="noreferrer" className="social-link"><span>🌐</span> Portfolio</a>
+            <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target="_blank" rel="noreferrer" className="social-link"><span>L</span> LinkIn</a>
+
           </div>
           <div className="stats-row">
             {[["4+","years exp."],["3","companies"],["6","certifications"],["10+","tools mastered"]].map(([num, label]) => (
@@ -330,7 +418,6 @@ function Hero() {
         <div className="hero-avatar">
           <div className="avatar-ring">
             <div className="avatar-inner">
-              {/* Palitan ng <img src="/your-photo.jpg" alt="Ron" /> */}
               <span className="avatar-initials">RAR</span>
             </div>
           </div>
@@ -360,7 +447,6 @@ function Marquee() {
   );
 }
 
-// ── SHARED ────────────────────────────────────────────
 function SectionHeader({ label, title }) {
   return (
     <div className="section-header">
@@ -398,22 +484,13 @@ function Skills() {
 }
 
 // ── EXPERIENCE ────────────────────────────────────────
-function TimelineItem({ role, company, period, items, delay ,src}) {
+function TimelineItem({ role, company, period, items, delay, src }) {
   const [ref, visible] = useReveal();
   return (
     <div ref={ref} className={`timeline-item ${visible ? "visible" : ""}`} style={{ transitionDelay: `${delay}s` }}>
       <div className="timeline-dot" />
-      
       <div className="timeline-card">
-
-  {src && (
-    <img
-      src={src}
-      alt={company}
-      className="timeline-logo"
-    />
-  )}
-
+        {src && <img src={src} alt={company} className="timeline-logo" />}
         <div className="timeline-header">
           <div className="timeline-role">{role}</div>
           <div className="timeline-period">{period}</div>
@@ -505,7 +582,7 @@ function Certs() {
   );
 }
 
-// ── MY DESIGN — IMAGE GALLERY (5 images per case study) ──
+// ── IMAGE GALLERY ─────────────────────────────────────
 function ImageGallery({ images, color, title }) {
   const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState(false);
@@ -514,7 +591,6 @@ function ImageGallery({ images, color, title }) {
   const prev = () => setActive((c) => (c - 1 + total) % total);
   const next = () => setActive((c) => (c + 1) % total);
 
-  // Keyboard nav for lightbox
   useEffect(() => {
     if (!lightbox) return;
     const onKey = (e) => {
@@ -528,68 +604,36 @@ function ImageGallery({ images, color, title }) {
 
   return (
     <div className="gallery-wrap">
-      {/* Main image */}
       <div className="gallery-main" style={{ "--g-color": color }}>
         {images.map((src, i) => (
           <div key={i} className={`gallery-slide ${i === active ? "active" : ""}`}>
-            <img
-              src={src}
-              alt={`${title} screen ${i + 1}`}
-              className="gallery-img"
-              draggable={false}
-              onClick={() => setLightbox(true)}
-              onError={(e) => {
-                e.target.style.display = "none";
-                e.target.nextSibling.style.display = "flex";
-              }}
-            />
+            <img src={src} alt={`${title} screen ${i + 1}`} className="gallery-img" draggable={false} onClick={() => setLightbox(true)}
+              onError={(e) => { e.target.style.display = "none"; e.target.nextSibling.style.display = "flex"; }} />
             <div className="gallery-placeholder" style={{ display: "none" }}>
               <span style={{ fontSize: "2.5rem" }}>🖼️</span>
-              <p>Image {i + 1}<br /><span style={{ fontSize: "0.7rem", opacity: 0.5 }}>{src}</span></p>
+              <p>Image {i + 1}</p>
             </div>
           </div>
         ))}
-
-        {/* Arrows on main */}
         <button className="gallery-arrow gallery-arrow-left" onClick={prev}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6" /></svg>
         </button>
         <button className="gallery-arrow gallery-arrow-right" onClick={next}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
         </button>
-
-        {/* Counter badge */}
-        <div className="gallery-badge" style={{ background: color }}>
-          {active + 1}/{total}
-        </div>
-
-        {/* Expand hint */}
+        <div className="gallery-badge" style={{ background: color }}>{active + 1}/{total}</div>
         <div className="gallery-expand-hint">click to expand</div>
       </div>
 
-      {/* Thumbnails row */}
       <div className="gallery-thumbs">
         {images.map((src, i) => (
-          <button
-            key={i}
-            className={`gallery-thumb ${i === active ? "active" : ""}`}
-            style={{ "--g-color": color }}
-            onClick={() => setActive(i)}
-          >
-            <img
-              src={src}
-              alt={`thumb ${i + 1}`}
-              onError={(e) => {
-                e.target.style.display = "none";
-                e.target.parentElement.classList.add("thumb-placeholder");
-                e.target.parentElement.textContent = i + 1;
-              }}
-            />
+          <button key={i} className={`gallery-thumb ${i === active ? "active" : ""}`} style={{ "--g-color": color }} onClick={() => setActive(i)}>
+            <img src={src} alt={`thumb ${i + 1}`}
+              onError={(e) => { e.target.style.display = "none"; e.target.parentElement.classList.add("thumb-placeholder"); e.target.parentElement.textContent = i + 1; }} />
           </button>
         ))}
       </div>
 
-      {/* Lightbox */}
       {lightbox && (
         <div className="lightbox" onClick={() => setLightbox(false)}>
           <div className="lightbox-inner" onClick={(e) => e.stopPropagation()}>
@@ -609,57 +653,39 @@ function ImageGallery({ images, color, title }) {
   );
 }
 
-// ── MY DESIGN — CASE STUDY CARD ───────────────────────
+// ── CASE STUDY CARD ───────────────────────────────────
 function CaseStudyCard({ cs, delay }) {
   const [ref, visible] = useReveal();
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div
-      ref={ref}
-      className={`cs-card ${visible ? "visible" : ""}`}
-      style={{ "--cs-color": cs.color, transitionDelay: `${delay}s` }}
-    >
-      {/* Color top bar */}
+    <div ref={ref} className={`cs-card ${visible ? "visible" : ""}`} style={{ "--cs-color": cs.color, transitionDelay: `${delay}s` }}>
       <div className="cs-bar" />
-
-      {/* Header */}
       <div className="cs-head">
         <div className="cs-meta">
           <span className="cs-num">{cs.num}</span>
-          <span className="cs-tag" style={{ color: cs.color, background: `${cs.color}15`, border: `1px solid ${cs.color}30` }}>
-            {cs.tag}
-          </span>
+          <span className="cs-tag" style={{ color: cs.color, background: `${cs.color}15`, border: `1px solid ${cs.color}30` }}>{cs.tag}</span>
         </div>
         <h3 className="cs-title">{cs.title}</h3>
         <p className="cs-subtitle">{cs.subtitle}</p>
       </div>
 
-      {/* Image Gallery — 5 images */}
       <ImageGallery images={cs.images} color={cs.color} title={cs.title} />
 
-      {/* Overview always visible */}
       <div className="cs-section">
-        <div className="cs-section-label">
-          <span>📋</span> Overview
-        </div>
+        <div className="cs-section-label"><span>📋</span> Overview</div>
         <p className="cs-text">{cs.overview}</p>
       </div>
-
       <div className="cs-section">
-        <div className="cs-section-label">
-          <span>🎯</span> Goal
-        </div>
+        <div className="cs-section-label"><span>🎯</span> Goal</div>
         <p className="cs-text">{cs.goal}</p>
       </div>
 
-      {/* Expandable content */}
       <div className={`cs-expandable ${expanded ? "open" : ""}`}>
         <div className="cs-section">
           <div className="cs-section-label"><span>💡</span> Solution</div>
           <p className="cs-text">{cs.solution}</p>
         </div>
-
         <div className="cs-section">
           <div className="cs-section-label"><span>✨</span> Design Highlights</div>
           <div className="cs-highlights">
@@ -674,29 +700,21 @@ function CaseStudyCard({ cs, delay }) {
             ))}
           </div>
         </div>
-
         <div className="cs-section">
           <div className="cs-section-label"><span>📐</span> UX Principles Applied</div>
           <ul className="cs-principles">
-            {cs.principles.map((p, i) => (
-              <li key={i} style={{ "--cs-color": cs.color }}>{p}</li>
-            ))}
+            {cs.principles.map((p, i) => <li key={i} style={{ "--cs-color": cs.color }}>{p}</li>)}
           </ul>
         </div>
       </div>
 
-      {/* Footer: tools + toggle */}
       <div className="cs-footer">
         <div className="cs-tools">
           <span className="cs-tools-label">Tools:</span>
           {cs.tools.map((t) => (
-            <span key={t} className="cs-chip" style={{ color: cs.color, background: `${cs.color}12`, borderColor: `${cs.color}30` }}>
-              {t}
-            </span>
+            <span key={t} className="cs-chip" style={{ color: cs.color, background: `${cs.color}12`, borderColor: `${cs.color}30` }}>{t}</span>
           ))}
-          <span className="cs-chip" style={{ color: cs.color, background: `${cs.color}12`, borderColor: `${cs.color}30` }}>
-            {cs.role}
-          </span>
+          <span className="cs-chip" style={{ color: cs.color, background: `${cs.color}12`, borderColor: `${cs.color}30` }}>{cs.role}</span>
         </div>
         <button className="cs-toggle" style={{ color: cs.color }} onClick={() => setExpanded((o) => !o)}>
           {expanded ? "Show Less ↑" : "Read Full Case Study ↓"}
@@ -714,18 +732,11 @@ function MyDesign() {
       <div className="wrapper">
         <div ref={headerRef} className={`mydesign-header ${headerVisible ? "hv" : ""}`}>
           <div className="section-label">Creative work</div>
-          <h2 className="section-title">
-            My Design <span className="accent-word">Showcase</span>
-          </h2>
-          <p className="mydesign-sub">
-            A collection of UI/UX and graphic design work — each with 5 screens and a full case study.
-          </p>
+          <h2 className="section-title">My Design <span className="accent-word">Showcase</span></h2>
+          <p className="mydesign-sub">A collection of UI/UX and graphic design work — each with screens and a full case study.</p>
         </div>
-
         <div className="cs-grid">
-          {CASE_STUDIES.map((cs, i) => (
-            <CaseStudyCard key={cs.id} cs={cs} delay={i * 0.15} />
-          ))}
+          {CASE_STUDIES.map((cs, i) => <CaseStudyCard key={cs.id} cs={cs} delay={i * 0.15} />)}
         </div>
       </div>
     </section>
@@ -740,17 +751,12 @@ function Contact() {
         <div className="contact-inner">
           <div>
             <div className="section-label">Let's work together</div>
-            <h2 className="contact-headline">
-              Got a<br />project?<br /><span>Let's talk.</span>
-            </h2>
-            <p className="contact-desc">
-              Open to freelance projects, full-time opportunities, and creative collaborations. Feel free to reach out!
-            </p>
+            <h2 className="contact-headline">Got a<br />project?<br /><span>Let's talk.</span></h2>
+            <p className="contact-desc">Open to freelance projects, full-time opportunities, and creative collaborations. Feel free to reach out!</p>
           </div>
           <div className="contact-links">
             {CONTACT_LINKS.map(({ icon, label, value, href }) => (
-              <a key={label} href={href} className="contact-link-item"
-                target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+              <a key={label} href={href} className="contact-link-item" target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
                 <div className="contact-link-icon">{icon}</div>
                 <div>
                   <div className="contact-link-label">{label}</div>
@@ -765,7 +771,6 @@ function Contact() {
   );
 }
 
-// ── FOOTER ────────────────────────────────────────────
 function Footer() {
   return (
     <footer>
@@ -791,7 +796,7 @@ export default function App() {
       <div className="orb orb-2" />
       <div className="orb orb-3" />
       <Navbar scrolled={scrolled} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <Hero/>
+      <Hero />
       <Marquee />
       <Skills />
       <Experience />

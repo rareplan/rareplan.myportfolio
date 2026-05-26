@@ -321,3 +321,188 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
   .stat-num{font-size:1.5rem;}
   .gallery-thumb{width:48px;height:32px;}
 }
+
+/* ═══════════════════════════════════════════════════════
+   DROPDOWN NAV CSS
+   I-paste mo ito sa App.css mo — pagkatapos ng .navbar styles
+   (pagkatapos ng ".hamburger.open span:nth-child(3)" block)
+═══════════════════════════════════════════════════════ */
+
+/* ── Desktop Dropdown Wrapper ── */
+.nav-dropdown-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+/* Trigger button — looks like a nav link */
+.nav-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: 'DM Sans', sans-serif;
+  padding: 0;
+  transition: color 0.2s;
+}
+.nav-dropdown-trigger:hover { color: var(--text); }
+
+/* Caret arrow icon */
+.nav-caret {
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+.nav-caret.open { transform: rotate(180deg); }
+
+/* Dropdown menu panel */
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 170px;
+  background: rgba(18, 18, 28, 0.97);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.4rem;
+  list-style: none;
+  z-index: 300;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(124,92,252,0.1);
+  animation: dropIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-8px) scale(0.96); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+/* Small triangle pointer */
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: rgba(18, 18, 28, 0.97);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+
+/* Each dropdown item */
+.nav-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.nav-dropdown-item:hover {
+  background: rgba(124, 92, 252, 0.12);
+  color: var(--text);
+}
+
+/* First item (My Design) — slightly highlighted */
+.nav-dropdown-menu li:first-child .nav-dropdown-item {
+  color: var(--accent);
+  font-weight: 600;
+}
+.nav-dropdown-menu li:first-child .nav-dropdown-item:hover {
+  background: rgba(124, 92, 252, 0.15);
+  color: var(--accent);
+}
+
+/* Divider between first item and external links */
+.nav-dropdown-menu li:nth-child(2) {
+  border-top: 1px solid var(--border);
+  margin-top: 0.3rem;
+  padding-top: 0.3rem;
+}
+
+/* External link indicator */
+.nav-dropdown-ext {
+  font-size: 0.7rem;
+  opacity: 0.5;
+  margin-left: auto;
+}
+
+/* ── Mobile Dropdown ── */
+.mobile-dropdown-wrap {
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 0.5rem;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'Syne', sans-serif;
+  text-align: left;
+  transition: color 0.2s;
+}
+.mobile-dropdown-trigger:hover { color: var(--accent2); }
+
+/* Mobile sub-links — slides open */
+.mobile-sub-links {
+  list-style: none;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+  opacity: 0;
+  padding-left: 0.5rem;
+}
+.mobile-sub-links.open {
+  max-height: 200px;
+  opacity: 1;
+}
+
+.mobile-sub-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.5rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: color 0.2s, padding-left 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.mobile-sub-link:hover {
+  color: var(--accent2);
+  padding-left: 1rem;
+}
+/* First mobile sub-item highlighted */
+.mobile-sub-links li:first-child .mobile-sub-link {
+  color: var(--accent);
+  font-weight: 600;
+}
+.mobile-sub-links li:last-child .mobile-sub-link {
+  border-bottom: none;
+  margin-bottom: 0.5rem;
+}
