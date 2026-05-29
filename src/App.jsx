@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
+import profile from "./image/profile.jpeg";  
 import ui1 from "./image/ui1.png";
 import ui2 from "./image/ui2.png";
 import ui3 from "./image/ui3.png";
@@ -135,7 +136,6 @@ const CONTACT_LINKS = [
   { icon: "📱", label: "Phone", value: "0975-682-5216", href: "tel:09756825216" },
   { icon: "🎨", label: "Behance", value: "behance.net/familyreplan", href: "https://www.behance.net/familyreplan" },
   { icon: "💾", label: "GitHub", value: "github.com/rareplan", href: "https://github.com/rareplan" },
- 
 ];
 
 const CASE_STUDIES = [
@@ -223,7 +223,6 @@ function NavDropdown({ item, onClose }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
-  // Close when clicking outside
   useEffect(() => {
     const handler = (e) => {
       if (ref.current && !ref.current.contains(e.target)) setOpen(false);
@@ -299,7 +298,6 @@ function Navbar({ scrolled, menuOpen, setMenuOpen }) {
       <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
         <a href="#home" className="nav-logo" onClick={closeAll}>R.A.</a>
 
-        {/* Desktop nav */}
         <ul className="nav-links-desktop">
           {NAV_LINKS.map((item) =>
             item.dropdown ? (
@@ -312,7 +310,6 @@ function Navbar({ scrolled, menuOpen, setMenuOpen }) {
           )}
         </ul>
 
-        {/* Hamburger */}
         <button
           className={`hamburger ${menuOpen ? "open" : ""}`}
           onClick={() => setMenuOpen((o) => !o)}
@@ -323,13 +320,11 @@ function Navbar({ scrolled, menuOpen, setMenuOpen }) {
         </button>
       </nav>
 
-      {/* Mobile drawer */}
       <div className={`mobile-drawer ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
         <ul className="mobile-nav-links">
           {NAV_LINKS.map((item) =>
             item.dropdown ? (
               <li key={item.label} className="mobile-dropdown-wrap">
-                {/* Toggle button */}
                 <button
                   className="mobile-dropdown-trigger"
                   onClick={() => setMobileExpanded((o) => !o)}
@@ -347,7 +342,6 @@ function Navbar({ scrolled, menuOpen, setMenuOpen }) {
                   </svg>
                 </button>
 
-                {/* Sub-items */}
                 <ul className={`mobile-sub-links ${mobileExpanded ? "open" : ""}`}>
                   {item.dropdown.map((d) => (
                     <li key={d.label}>
@@ -404,7 +398,6 @@ function Hero() {
             <a href="https://www.behance.net/familyreplan" target="_blank" rel="noreferrer" className="social-link"><span>Be</span> Behance</a>
             <a href="https://github.com/rareplan" target="_blank" rel="noreferrer" className="social-link"><span>GH</span> GitHub</a>
             <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target="_blank" rel="noreferrer" className="social-link"><span>L</span> LinkIn</a>
-
           </div>
           <div className="stats-row">
             {[["4+","years exp."],["3","companies"],["6","certifications"],["10+","tools mastered"]].map(([num, label]) => (
@@ -415,13 +408,16 @@ function Hero() {
             ))}
           </div>
         </div>
+
+        {/* ── AVATAR — replaced initials with photo ── */}
         <div className="hero-avatar">
           <div className="avatar-ring">
             <div className="avatar-inner">
-              <span className="avatar-initials">RAR</span>
+              <img src={profile} alt="Ron Arnold Replan" />
             </div>
           </div>
         </div>
+
       </div>
       <div className="scroll-indicator">
         <div className="scroll-line" />
@@ -607,7 +603,8 @@ function ImageGallery({ images, color, title }) {
       <div className="gallery-main" style={{ "--g-color": color }}>
         {images.map((src, i) => (
           <div key={i} className={`gallery-slide ${i === active ? "active" : ""}`}>
-            <img src={src} alt={`${title} screen ${i + 1}`} className="gallery-img" draggable={false} onClick={() => setLightbox(true)}
+            <img src={src} alt={`${title} screen ${i + 1}`} className="gallery-img" draggable={false}
+              onClick={() => setLightbox(true)}
               onError={(e) => { e.target.style.display = "none"; e.target.nextSibling.style.display = "flex"; }} />
             <div className="gallery-placeholder" style={{ display: "none" }}>
               <span style={{ fontSize: "2.5rem" }}>🖼️</span>

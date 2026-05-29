@@ -39,7 +39,16 @@ body {
 }
 
 .gallery-logo {
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-0.02em;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;flex-shrink:0;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  flex-shrink: 0;
 }
 
 .gallery-logo:hover {
@@ -93,12 +102,8 @@ body {
 }
 
 @keyframes glowMove {
-  from {
-    transform: translateX(-50%) scale(1);
-  }
-  to {
-    transform: translateX(-50%) scale(1.2);
-  }
+  from { transform: translateX(-50%) scale(1); }
+  to   { transform: translateX(-50%) scale(1.2); }
 }
 
 .gallery-hero-inner {
@@ -118,12 +123,18 @@ body {
   animation: fadeUp 0.8s ease;
 }
 
+/* ── GALLERY TITLE FIX ──
+   body has font-family: "Inter" which overrides generic "sans-serif".
+   Using !important ensures this class always wins regardless of cascade.
+   Arial/Helvetica Neue are system sans-serif fonts — no Google Fonts needed.
+*/
 .gallery-title {
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 900;
   line-height: 1;
   margin-bottom: 22px;
   animation: fadeUp 1s ease;
+  font-family: 'Syne', sans-serif;
 }
 
 .gallery-subtitle {
@@ -136,14 +147,8 @@ body {
 }
 
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(35px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(35px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ───────────────── FILTERS ───────────────── */
@@ -202,14 +207,8 @@ body {
 }
 
 @keyframes cardFade {
-  from {
-    opacity: 0;
-    transform: translateY(45px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(45px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .gallery-card:hover {
@@ -231,12 +230,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,0.05),
-      rgba(255,255,255,0.02)
-    );
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
   color: var(--c);
   position: relative;
   overflow: hidden;
@@ -247,22 +241,13 @@ body {
   position: absolute;
   width: 180%;
   height: 180%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,0.1),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
   animation: shine 4s linear infinite;
 }
 
 @keyframes shine {
-  from {
-    transform: rotate(25deg) translateX(-100%);
-  }
-  to {
-    transform: rotate(25deg) translateX(100%);
-  }
+  from { transform: rotate(25deg) translateX(-100%); }
+  to   { transform: rotate(25deg) translateX(100%); }
 }
 
 .gallery-card-info {
@@ -373,10 +358,9 @@ body {
 /* ───────────────── MOBILE ───────────────── */
 
 @media (max-width: 768px) {
-
   .gallery-title {
-    font-size: 3rem;
-    
+    font-size: 1.25rem;
+    font-family: 'Syne', sans-serif;
   }
 
   .gallery-subtitle {
@@ -391,5 +375,4 @@ body {
     flex-direction: column;
     text-align: center;
   }
-
 }

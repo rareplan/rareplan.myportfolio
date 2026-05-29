@@ -76,7 +76,16 @@
 }
 
 .qc-logo {
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-0.02em;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;flex-shrink:0;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #7c5cfc, #00d9ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  flex-shrink: 0;
 }
 
 .qc-nav-badge {
@@ -113,9 +122,10 @@
 }
 
 .qc-hero-title {
-  font-size: clamp(2.4rem, 6vw, 4.8rem);
-  font-weight: 800;
-  line-height: 1.08;
+  font-size: clamp(2.4rem, 4vw, 4.8rem);
+  font-weight: 710;
+  line-height: 1.10;
+  font-family: 'Syne', sans-serif;
   letter-spacing: -0.03em;
   color: #fff;
   margin: 0 0 1.75rem;
@@ -143,9 +153,7 @@
   flex-wrap: wrap;
 }
 
-.qc-stat {
-  text-align: center;
-}
+.qc-stat { text-align: center; }
 
 .qc-stat-num {
   font-size: 2.2rem;
@@ -269,9 +277,6 @@
   border-color: rgba(124, 92, 252, 0.4);
   box-shadow: 0 20px 60px rgba(124, 92, 252, 0.12);
 }
-.qc-card-wide {
-  column-span: all;
-}
 
 .qc-card-img {
   width: 100%;
@@ -294,18 +299,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
-.qc-placeholder-icon {
-  opacity: 0.25;
-}
-
-/* wide card placeholder mas matangkad */
-.qc-card-wide .qc-placeholder {
-  height: 420px;
-}
-
-.qc-card-wide {
-  min-height: 500px;
-}
+.qc-placeholder-icon { opacity: 0.25; }
 
 /* ── CARD OVERLAY ─────────────────────────────────────── */
 .qc-card-overlay {
@@ -419,24 +413,30 @@
   border-top: 1px solid rgba(124, 92, 252, 0.1);
   transition: background 0.2s;
 }
-.qc-reel-thumb:hover {
-  background: rgba(124, 92, 252, 0.1);
-}
+.qc-reel-thumb:hover { background: rgba(124, 92, 252, 0.1); }
 
-.qc-play-btn {
-  width: 64px;
-  height: 64px;
+.qc-play-ring {
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background: rgba(124, 92, 252, 0.75);
+  border: 2px solid;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.25s, background 0.25s;
+  transition: transform 0.25s, border-color 0.25s;
 }
-.qc-reel-thumb:hover .qc-play-btn {
-  transform: scale(1.1);
-  background: #7c5cfc;
+.qc-reel-thumb:hover .qc-play-ring { transform: scale(1.08); }
+
+.qc-play-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s;
 }
+.qc-reel-thumb:hover .qc-play-btn { transform: scale(1.05); }
 
 .qc-reel-overlay-text {
   font-size: 12px;
@@ -451,9 +451,7 @@
   display: block;
 }
 
-.qc-reel-info {
-  padding: 16px 18px 20px;
-}
+.qc-reel-info { padding: 16px 18px 20px; }
 
 .qc-reel-title {
   font-size: 15px;
@@ -484,328 +482,320 @@
 
 /* ── ANIMATION ────────────────────────────────────────── */
 @keyframes qcFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ════════════════════════════════════════════════════════
-   RESPONSIVE BREAKPOINTS
+   LIGHTBOX MODAL — FIXED IMAGE ALIGNMENT
+   ════════════════════════════════════════════════════════
+
+   Key fixes:
+   1. .qc-modal-backdrop — flex column para maka-position
+      ang counter sa labas ng modal box.
+   2. .qc-modal-box — walang fixed aspect-ratio; ang image
+      mismo ang mag-didikta ng height ng container.
+   3. .qc-modal-img-wrap — NO aspect-ratio, NO fixed height.
+      background lang para sa letterbox effect kung kailangan.
+   4. .qc-modal-img — max-width + max-height para hindi
+      lalampas sa viewport; object-fit: contain para preserved
+      ang original proportions.
+   5. Nav arrows nasa labas ng modal box — walang overlap
+      sa image.
+*/
+
+.qc-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 5rem;
+  animation: qcFadeIn 0.2s ease;
+}
+
+@keyframes qcFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Nav arrows — floating sa magkabilang gilid ng backdrop */
+.qc-modal-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1001;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.qc-modal-nav:hover {
+  background: rgba(124, 92, 252, 0.25);
+  color: #fff;
+  border-color: rgba(124, 92, 252, 0.5);
+}
+.qc-modal-nav-left  { left: 1.5rem; }
+.qc-modal-nav-right { right: 1.5rem; }
+
+/* ── Modal box — natural width, adapts to image */
+.qc-modal-box {
+  background: #111118;
+  border: 1px solid rgba(124, 92, 252, 0.2);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 640px;
+  overflow: hidden;
+  position: relative;
+  animation: qcSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(124, 92, 252, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+@keyframes qcSlideUp {
+  from { opacity: 0; transform: translateY(32px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.qc-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.55);
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.qc-modal-close:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+/* ══════════════════════════════════════════════
+   THE MAIN FIX: image wrap at image mismo
+
+   - Walang fixed aspect-ratio o fixed height
+   - Image mag-di-display sa original niya ratio
+   - max-height: 70vh para hindi mag-overflow
+     pababa sa maliit na screen
+   - background: #0a0a12 para may dark letterbox
+     kung landscape image sa portrait modal
+   - display:flex + center para laging nasa gitna
+══════════════════════════════════════════════ */
+.qc-modal-img-wrap {
+  width: 100%;
+  background: #0a0a12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* NO aspect-ratio here — let the image dictate height */
+}
+
+.qc-modal-img {
+  /* Show at natural proportions */
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  display: block;
+  /* No pointer-events issue — image is inside non-interactive wrap */
+}
+
+/* Placeholder kung walang image */
+.qc-modal-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--c);
+  opacity: 0.25;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 4rem 0;
+}
+
+/* ── Info section ── */
+.qc-modal-info {
+  padding: 1.25rem 1.5rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.qc-modal-category {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid;
+  width: fit-content;
+}
+
+.qc-modal-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+.qc-modal-canva-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0.35rem;
+  padding: 0.55rem 1.25rem;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  width: fit-content;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.qc-modal-canva-btn:hover {
+  opacity: 0.82;
+  transform: translateY(-2px);
+}
+
+/* ── Counter ── */
+.qc-modal-counter {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.06em;
+  margin-top: 14px;
+  text-align: center;
+}
+
+/* ════════════════════════════════════════════════════════
+   RESPONSIVE
    ════════════════════════════════════════════════════════ */
 
-/* ── TABLET LANDSCAPE (≤1024px) ───────────────────────── */
 @media (max-width: 1024px) {
-  .qc-nav {
-    padding: 0 1.75rem;
-  }
-
-  .qc-hero {
-    padding: 140px 1.75rem 80px;
-  }
-
-  .qc-ads-section,
-  .qc-reels-section {
-    padding-left: 1.75rem;
-    padding-right: 1.75rem;
-  }
-
-  .qc-masonry {
-    columns: 2;
-    column-gap: 18px;
-  }
-
-  .qc-reels-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 22px;
-  }
-
-  .qc-stats {
-    gap: 3rem;
-  }
+  .qc-nav { padding: 0 1.75rem; }
+  .qc-hero { padding: 140px 1.75rem 80px; }
+  .qc-ads-section, .qc-reels-section { padding-left: 1.75rem; padding-right: 1.75rem; }
+  .qc-masonry { columns: 2; column-gap: 18px; }
+  .qc-reels-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; }
+  .qc-stats { gap: 3rem; }
 }
 
-/* ── TABLET PORTRAIT (≤768px) ─────────────────────────── */
 @media (max-width: 768px) {
-  .qc-nav {
-    padding: 0 1.25rem;
-    height: 58px;
-  }
+  .qc-nav { padding: 0 1.25rem; height: 58px; }
+  .qc-nav-badge { display: none; }
+  .qc-hero { padding: 120px 1.25rem 70px; }
+  .qc-hero-title { font-size: clamp(2rem, 8vw, 3.2rem); }
+  .qc-hero-sub { font-size: 0.95rem; margin-bottom: 2.5rem; }
+  .qc-stats { gap: 2rem; }
+  .qc-stat-num { font-size: 1.8rem; }
+  .qc-section-toggle { margin-bottom: 3rem; gap: 8px; }
+  .qc-toggle-btn { padding: 10px 22px; font-size: 13px; }
+  .qc-filters { gap: 8px; margin-bottom: 2.5rem; padding: 0 1.25rem; }
+  .qc-filter-btn { padding: 7px 16px; font-size: 12px; }
+  .qc-ads-section, .qc-reels-section { padding: 0 1.25rem 5rem; }
+  .qc-masonry { columns: 2; column-gap: 14px; }
+  .qc-card { margin-bottom: 14px; border-radius: 14px; }
+  .qc-card-overlay { padding: 12px 14px 14px; }
+  .qc-reels-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .qc-reel-info { padding: 14px 14px 16px; }
 
-  .qc-nav-badge {
-    display: none;
+  .qc-modal-backdrop {
+    padding: 1rem 4rem;
+    align-items: flex-end;
+    justify-content: flex-end;
   }
-
-  .qc-hero {
-    padding: 120px 1.25rem 70px;
+  .qc-modal-box {
+    border-radius: 20px 20px 14px 14px;
+    max-width: 100%;
   }
-
-  .qc-hero-title {
-    font-size: clamp(2rem, 8vw, 3.2rem);
-  }
-
-  .qc-hero-sub {
-    font-size: 0.95rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .qc-stats {
-    gap: 2rem;
-  }
-
-  .qc-stat-num {
-    font-size: 1.8rem;
-  }
-
-  .qc-section-toggle {
-    margin-bottom: 3rem;
-    gap: 8px;
-  }
-
-  .qc-toggle-btn {
-    padding: 10px 22px;
-    font-size: 13px;
-  }
-
-  .qc-filters {
-    gap: 8px;
-    margin-bottom: 2.5rem;
-    padding: 0 1.25rem;
-  }
-
-  .qc-filter-btn {
-    padding: 7px 16px;
-    font-size: 12px;
-  }
-
-  .qc-ads-section,
-  .qc-reels-section {
-    padding: 0 1.25rem 5rem;
-  }
-
-  .qc-masonry {
-    columns: 2;
-    column-gap: 14px;
-  }
-
-  .qc-card {
-    margin-bottom: 14px;
-    border-radius: 14px;
-  }
-
-  .qc-card-overlay {
-    padding: 12px 14px 14px;
-  }
-
-  .qc-reels-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .qc-reel-info {
-    padding: 14px 14px 16px;
-  }
+  .qc-modal-img { max-height: 60vh; }
+  .qc-modal-info { padding: 1rem 1.25rem 1.4rem; }
+  .qc-modal-nav-left  { left: 0.5rem; }
+  .qc-modal-nav-right { right: 0.5rem; }
 }
 
-/* ── MOBILE LARGE (≤600px) ────────────────────────────── */
 @media (max-width: 600px) {
-  .qc-masonry {
-    columns: 1;
-  }
-
-  .qc-card-wide {
-    column-span: unset;
-  }
-
-  .qc-reels-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .qc-reel-frame {
-    aspect-ratio: 9 / 16;
-  }
-
-  .qc-stats {
-    gap: 1.5rem;
-  }
+  .qc-masonry { columns: 1; }
+  .qc-reels-grid { grid-template-columns: 1fr; gap: 20px; }
+  .qc-reel-frame { aspect-ratio: 9 / 16; }
+  .qc-stats { gap: 1.5rem; }
 }
 
-/* ── MOBILE SMALL (≤480px) ────────────────────────────── */
 @media (max-width: 480px) {
-  .qc-nav {
-    padding: 0 1rem;
-    height: 54px;
-  }
+  .qc-nav { padding: 0 1rem; height: 54px; }
+  .qc-logo { font-size: 17px; }
+  .qc-back { padding: 6px 12px; font-size: 12px; }
+  .qc-hero { padding: 100px 1rem 60px; }
+  .qc-hero-label { font-size: 10px; padding: 5px 14px; }
+  .qc-hero-title { font-size: clamp(1.8rem, 9vw, 2.6rem); letter-spacing: -0.02em; }
+  .qc-hero-sub { font-size: 0.9rem; }
+  .qc-stats { gap: 1.25rem; }
+  .qc-stat-num { font-size: 1.6rem; }
+  .qc-stat-label { font-size: 10px; }
+  .qc-section-toggle { gap: 6px; margin-bottom: 2.5rem; padding: 0 1rem; }
+  .qc-toggle-btn { padding: 9px 16px; font-size: 12px; gap: 6px; flex: 1; justify-content: center; }
+  .qc-filters { padding: 0 1rem; gap: 6px; margin-bottom: 2rem; }
+  .qc-filter-btn { padding: 6px 14px; font-size: 11px; }
+  .qc-ads-section, .qc-reels-section { padding: 0 1rem 4rem; }
+  .qc-masonry { column-gap: 0; }
+  .qc-card { margin-bottom: 16px; border-radius: 12px; }
+  .qc-placeholder { height: 200px; }
+  .qc-card-overlay { padding: 12px 14px 14px; }
+  .qc-card-title { font-size: 13px; }
+  .qc-reel-card { border-radius: 14px; }
+  .qc-reel-platform { margin: 14px 14px 0; font-size: 10px; }
+  .qc-reel-info { padding: 14px 14px 18px; }
+  .qc-reel-title { font-size: 14px; }
+  .qc-reel-desc { font-size: 12px; }
+  .qc-play-btn { width: 54px; height: 54px; }
+  .qc-footer { padding: 2rem 1rem; font-size: 12px; }
 
-  .qc-logo {
-    font-size: 17px;
-  }
-
-  .qc-back {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-
-  .qc-hero {
-    padding: 100px 1rem 60px;
-  }
-
-  .qc-hero-label {
-    font-size: 10px;
-    padding: 5px 14px;
-  }
-
-  .qc-hero-title {
-    font-size: clamp(1.8rem, 9vw, 2.6rem);
-    letter-spacing: -0.02em;
-  }
-
-  .qc-hero-sub {
-    font-size: 0.9rem;
-  }
-
-  .qc-stats {
-    gap: 1.25rem;
-  }
-
-  .qc-stat-num {
-    font-size: 1.6rem;
-  }
-
-  .qc-stat-label {
-    font-size: 10px;
-  }
-
-  .qc-section-toggle {
-    gap: 6px;
-    margin-bottom: 2.5rem;
-    padding: 0 1rem;
-  }
-
-  .qc-toggle-btn {
-    padding: 9px 16px;
-    font-size: 12px;
-    gap: 6px;
-    flex: 1;
-    justify-content: center;
-  }
-
-  .qc-filters {
-    padding: 0 1rem;
-    gap: 6px;
-    margin-bottom: 2rem;
-  }
-
-  .qc-filter-btn {
-    padding: 6px 14px;
-    font-size: 11px;
-  }
-
-  .qc-ads-section,
-  .qc-reels-section {
-    padding: 0 1rem 4rem;
-  }
-
-  .qc-masonry {
-    column-gap: 0;
-  }
-
-  .qc-card {
-    margin-bottom: 16px;
-    border-radius: 12px;
-  }
-
-  .qc-placeholder {
-    height: 200px;
-  }
-
-  .qc-card-overlay {
-    padding: 12px 14px 14px;
-  }
-
-  .qc-card-title {
-    font-size: 13px;
-  }
-
-  .qc-reel-card {
-    border-radius: 14px;
-  }
-
-  .qc-reel-platform {
-    margin: 14px 14px 0;
-    font-size: 10px;
-  }
-
-  .qc-reel-info {
-    padding: 14px 14px 18px;
-  }
-
-  .qc-reel-title {
-    font-size: 14px;
-  }
-
-  .qc-reel-desc {
-    font-size: 12px;
-  }
-
-  .qc-play-btn {
-    width: 54px;
-    height: 54px;
-  }
-
-  .qc-footer {
-    padding: 2rem 1rem;
-    font-size: 12px;
-  }
+  .qc-modal-backdrop { padding: 0 3.5rem 0; justify-content: center; }
+  .qc-modal-box { border-radius: 16px; }
+  .qc-modal-img { max-height: 55vh; }
+  .qc-modal-info { padding: 0.9rem 1rem 1.2rem; }
+  .qc-modal-title { font-size: 0.95rem; }
+  .qc-modal-canva-btn { font-size: 12px; padding: 0.48rem 1rem; }
+  .qc-modal-nav { width: 38px; height: 38px; }
+  .qc-modal-nav-left  { left: 0.4rem; }
+  .qc-modal-nav-right { right: 0.4rem; }
 }
 
-/* ── VERY SMALL (≤360px) ──────────────────────────────── */
 @media (max-width: 360px) {
-  .qc-hero-title {
-    font-size: 1.7rem;
-  }
-
-  .qc-toggle-btn {
-    padding: 8px 12px;
-    font-size: 11px;
-  }
-
-  .qc-stats {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
-}
-
-/* ── PLAY RING (bagong design) ────────────────────────── */
-.qc-play-ring {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 2px solid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.25s, border-color 0.25s;
-}
-.qc-reel-thumb:hover .qc-play-ring {
-  transform: scale(1.08);
-}
-
-.qc-play-btn {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.25s;
-}
-.qc-reel-thumb:hover .qc-play-btn {
-  transform: scale(1.05);
+  .qc-hero-title { font-size: 1.7rem; }
+  .qc-toggle-btn { padding: 8px 12px; font-size: 11px; }
+  .qc-stats { flex-direction: column; gap: 1rem; align-items: center; }
+  .qc-modal-backdrop { padding: 0 3rem; }
 }
