@@ -42,9 +42,21 @@ const SKILLS = [
     tags: ["HTML5", "CSS3", "JavaScript", "React JS", "Golang"],
   },
   {
-    icon: "🛠️",
+    icon: "",
     category: "Tools & Technologies",
     tags: ["GitHub", "Google Data Studio", "ManyChat", "Make (Integromat)", "PostgreSQL"],
+  },
+
+  {
+    icon: "💻🤖",
+    category: "AI Tools",
+    tags: ["ChatGPT", "Claude AI", "Gemini", "GitHub Copilot"],
+  },
+
+  {
+    icon: "🎬",
+    category: "Video Editing & AI Tools",
+    tags: ["Filmora", "Canva", "Jitter", "Capcut"],
   },
 ];
 
