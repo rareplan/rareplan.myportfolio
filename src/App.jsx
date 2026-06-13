@@ -10,6 +10,7 @@ import soc3 from "./image/soc3.png";
 import web1 from "./image/web1.png";
 import web2 from "./image/web2.png";
 import web3 from "./image/web3.png";
+import { link } from "framer-motion/client";
 
 // ── DATA ──────────────────────────────────────────────
 const NAV_LINKS = [
@@ -130,12 +131,18 @@ const PROJECTS = [
 ];
 
 const CERTS = [
-  { icon: "🏆", name: "UI/UX Beginners", issuer: "Simplilearn · 2025" },
-  { icon: "🏆", name: "Full Stack Developer Course", issuer: "Simplilearn · 2025" },
-  { icon: "☁️", name: "Introduction to Azure Services", issuer: "Microsoft / Simplilearn · 2025" },
-  { icon: "🎨", name: "Canva for Beginners", issuer: "Simplilearn · 2025" },
-  { icon: "🇵🇭", name: "Philippines Design Fest", issuer: "2025" },
-  { icon: "🤖", name: "Website UI/UX Designing using ChatGPT", issuer: "2026" },
+  { icon: "📜", name: "11th Philippine Youth Congress on Information Technology (Y4IT)", issuer: "SMX Convention Center, September 2013" },
+  { icon: "📜", name: "DICT Cybersecurity Caravan", issuer: "LSPU SPCC Campus, September 2017" },
+  { icon: "📜", name: "Canva for Beginners", issuer: "Simplilearn SkillUp 2025 (Code:8002492)", link:"https://drive.google.com/file/d/1neNoOSQWvBkdHWsLzk4nEjam9JS2Bb-T/view?usp=sharing"},
+  { icon: "📜", name: "Introduction to Graphic Design; Basic of UI/UX", issuer: "Simplilearn SkillUp 2025 (Code:8696819)", link:"https://drive.google.com/file/d/1aSPwIvoOCkjQOotGm_vuzWT79xYNLFVO/view?usp=sharing" },
+  { icon: "🏆", name: "UI/UX Beginners", issuer: "Simplilearn SkillUp 2025 (Code:8644682)", link:"https://drive.google.com/file/d/1WoF7q_4RVAvP9LpG7mERC7NJ1nB4gaJu/view?usp=sharing" },
+  { icon: "🏆", name: "Full Stack Developer Course", issuer: "Simplilearn SkillUp 2025 (Code:8738010)", link:"https://drive.google.com/file/d/1x9m_Tzdwu6VArEIimwVCDFcbDOihuxRM/view?usp=sharing" },
+  { icon: "☁️", name: "Introduction to Azure Services", issuer: "Microsoft / Simplilearn 2025 (Code:8881780)" , link: "https://drive.google.com/file/d/1kIOF2BozBajPt5Wt2nHbq6BV_lV41Zrg/view?usp=sharing"},
+  { icon: "🎨", name: "PostgreSQL: Become an SQL Developer", issuer: "Simplilearn SkillUp 2025 (Code:8788793)" , link:"https://drive.google.com/file/d/156d60cP9E7gRMwo5i-dxPTr2qmFaw6ZY/view?usp=sharing"},
+  { icon: "🇵🇭", name: "Philippines Design Fest", issuer: "Seminar - 2025", link:"https://drive.google.com/file/d/1scLTAF7wuE91f2s6nXIQoq5hc_oJ_5om/view?usp=sharing"},
+  { icon: "🤖", name: "Website UI/UX Designing using ChatGPT", issuer:"Simplilearn SkillUp 2026 (Code:10070011)", link:"https://drive.google.com/file/d/1aSPwIvoOCkjQOotGm_vuzWT79xYNLFVO/view?usp=sharing"},
+  { icon: "🎨", name: "Web Designer Basic", issuer: "Simplilearn SkillUp 2026 (Code:10334198)", link:"https://drive.google.com/file/d/1I-Ho8EOIdwf8y_8909c0lxPR0wO2ULX9/view?usp=sharing" },
+
 ];
 
 const MARQUEE_ITEMS = [
@@ -556,14 +563,15 @@ function Projects() {
 }
 
 // ── CERTS ─────────────────────────────────────────────
-function CertItem({ icon, name, issuer, delay }) {
+function CertItem({ icon, name, issuer, link, delay }) {
   const [ref, visible] = useReveal();
   return (
     <div ref={ref} className={`cert-item ${visible ? "visible" : ""}`} style={{ transitionDelay: `${delay}s` }}>
       <div className="cert-icon">{icon}</div>
-      <div>
+      <div className="cert-info">
         <div className="cert-name">{name}</div>
         <div className="cert-issuer">{issuer}</div>
+        {link && <a href={link} target="_blank" rel="noreferrer" className="cert-link" style={{ fontFamily: "inherit", color: "#5cfcc7", fontSize: "0.7rem", textDecoration: "none" }}>View ↗</a>}
       </div>
     </div>
   );
