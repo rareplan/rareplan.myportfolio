@@ -10,7 +10,9 @@ import soc3 from "./image/soc3.png";
 import web1 from "./image/web1.png";
 import web2 from "./image/web2.png";
 import web3 from "./image/web3.png";
+import video from "./image/video.mp4";
 import { link } from "framer-motion/client";
+
 
 // ── DATA ──────────────────────────────────────────────
 const NAV_LINKS = [
@@ -158,6 +160,41 @@ const CONTACT_LINKS = [
 ];
 
 const CASE_STUDIES = [
+    {
+  id: "gospel",
+  num: "04",
+  tag: "Mobile App Design",
+  title: "The Music Gospel App",
+  subtitle: "A Modern Onboarding Experience for Worship Musicians",
+  color: "#a855f7",
+  role: "UI/UX Designer",
+  tools: ["Figma"],
+  images: [], 
+  video: video,
+  overview: "The Music Gospel is a mobile app concept designed for music enthusiasts and worship musicians. The project focuses on creating a simple and modern onboarding experience with Splash, Welcome, Login, and Sign Up screens.",
+  goal: "Design a clean, modern authentication flow that removes friction from onboarding while staying true to the musical and spiritual identity of the app.",
+  solution: "Designed a clean dark-themed interface with neon accents, intuitive navigation, and an easy authentication flow to provide a seamless user experience.",
+  highlights: [
+    { icon: "🌑", label: "Dark Theme", text: "Deep dark backgrounds with neon accent colors create a premium, modern feel suited for music and worship contexts." },
+    { icon: "✨", label: "Neon Accents", text: "Strategic use of glowing purple and teal accents guide the user's eye toward key actions like Login and Sign Up." },
+    { icon: "🔐", label: "Auth Flow", text: "Streamlined Splash → Welcome → Login → Sign Up screens minimize steps and reduce onboarding friction." },
+  ],
+  principles: [
+    "Simplicity — minimal fields and clear CTAs reduce cognitive load",
+    "Visual Identity — dark theme with neon accents reflects music and worship culture",
+    "Consistency — unified type scale and button styles across all screens",
+  ],
+},
+
+
+
+
+
+
+
+
+
+
   {
     id: "mvl",
     num: "01",
@@ -670,6 +707,7 @@ function ImageGallery({ images, color, title }) {
   );
 }
 
+
 // ── CASE STUDY CARD ───────────────────────────────────
 function CaseStudyCard({ cs, delay }) {
   const [ref, visible] = useReveal();
@@ -687,7 +725,18 @@ function CaseStudyCard({ cs, delay }) {
         <p className="cs-subtitle">{cs.subtitle}</p>
       </div>
 
-      <ImageGallery images={cs.images} color={cs.color} title={cs.title} />
+      {cs.images && cs.images.length > 0 && (
+        <ImageGallery images={cs.images} color={cs.color} title={cs.title} />
+      )}
+
+      {cs.video && (
+        <div className="cs-section cs-video-section">
+          <div className="cs-section-label"><span>🎬</span> Demo Video</div>
+          <div className="cs-video-wrapper" style={{ borderColor: `${cs.color}30` }}>
+            <video controls src={cs.video} className="cs-video" />
+          </div>
+        </div>
+      )}
 
       <div className="cs-section">
         <div className="cs-section-label"><span>📋</span> Overview</div>
@@ -741,6 +790,7 @@ function CaseStudyCard({ cs, delay }) {
   );
 }
 
+
 // ── MY DESIGN SECTION ─────────────────────────────────
 function MyDesign() {
   const [headerRef, headerVisible] = useReveal();
@@ -759,6 +809,7 @@ function MyDesign() {
     </section>
   );
 }
+
 
 // ── CONTACT ───────────────────────────────────────────
 function Contact() {

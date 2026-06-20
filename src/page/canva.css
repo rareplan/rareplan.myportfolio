@@ -129,7 +129,7 @@ body {
    Arial/Helvetica Neue are system sans-serif fonts — no Google Fonts needed.
 */
 .gallery-title {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2rem, 8vw, 6rem);  /* 32px minimum */
   font-weight: 900;
   line-height: 1;
   margin-bottom: 22px;
@@ -359,7 +359,7 @@ body {
 
 @media (max-width: 768px) {
   .gallery-title {
-    font-size: 1.25rem;
+    font-size: clamp(2rem, 8vw, 3.5rem); 
     font-family: 'Syne', sans-serif;
   }
 

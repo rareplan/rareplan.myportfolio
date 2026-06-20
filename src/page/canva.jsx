@@ -60,11 +60,7 @@ export default function CanvaPage() {
           <div className="gallery-pill">Canva Portfolio</div>
 
           {/* Font override here is backup only — primary fix is in CSS with !important */}
-          <h1
-            className="gallery-title"
-            style={{ fontFamily: "'Syne', sans-serif", fontSize: "4rem" }}>
-            Creative <span style={{ color: "#7c5cfc" }}>Designs</span>
-          </h1>
+          <h1 className="gallery-title">Creative <span style={{ color: "#7c5cfc" }}>Designs</span> </h1>
 
           <p className="gallery-subtitle">
             A collection of social media creatives, presentations, flyers, and brand materials
