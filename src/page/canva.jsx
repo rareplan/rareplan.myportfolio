@@ -9,6 +9,9 @@ import event from "../canva/event.png";
 import ppt from "../canva/ppt.png";
 import menu from "../canva/menu.png";
 import yt from "../canva/yt.png";
+import service1 from "../canva/service1.png";
+import service2 from "../canva/service2.png";
+import service3 from "../canva/service3.png";
 
 const CANVA_IMAGES = [
   { src: camera, title: "Photography Services", tag: "Social Media", color: "#7c5cfc", link: "https://canva.link/xjphwjkoxymhz8s" },
@@ -19,6 +22,9 @@ const CANVA_IMAGES = [
   { src: faq,    title: "Frequently Asked Questions", tag: "FAQ Poster", color: "#fd0202", link: "https://canva.link/khzhj7vrfdlif5f" },
   { src: burger, title: "Burger Promo",         tag: "Banners",      color: "#06d6a0", link: "https://canva.link/z8f1k0adrg31qo6" },
   { src: id,     title: "Event ID",             tag: "ID",           color: "#067fd6", link: "https://canva.link/1fmiuietgpo72ad" },
+  { src: service1, title: "Service 1",          tag: "Sunday Services Poster",     color: "#885256", link: "https://canva.link/service1" },
+  { src: service2, title: "Service 2",          tag: "Sunday Services Poster",     color: "#7167f9", link: "https://canva.link/service2" },
+  { src: service3, title: "Service 3",          tag: "Sunday Services Poster",     color: "#ffcccc", link: "https://canva.link/service3" },
 ];
 
 const TAGS = ["All", ...Array.from(new Set(CANVA_IMAGES.map((i) => i.tag)))];

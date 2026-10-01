@@ -10,10 +10,13 @@ import cares   from "../qcredit/cares.png";
 import trend   from "../qcredit/trend.png";
 import ins     from "../qcredit/ins.png";
 import qc      from "../qcredit/qc.png";
+import mvl1  from "../qcredit/mvl1.png";
+import mvl2  from "../qcredit/mvl2.png";
+import mvl3  from "../qcredit/mvl3.png";
 
 
 const AD_IMAGES = [
-  { src: qc,    title: "Relatable Ad Poster",    category: "Services",          color: "#7c5cfc", link: "https://www.canva.com/your-link" },
+  { src: qc,      title: "Relatable Ad Poster",   category: "Services",          color: "#7c5cfc", link: "https://www.canva.com/your-link" },
   { src: ins,     title: "Inspirational Quotes",  category: "Promotional",        color: "#00d9ff", link: "https://www.canva.com/your-link" },
   { src: mvl,     title: "Market Vendor Loan",    category: "Poster Campaign",    color: "#7c5cfc", link: "https://www.canva.com/your-link" },
   { src: cares,   title: "QCredit Cares",         category: "Consumer Awareness", color: "#00d9ff", link: "https://www.canva.com/your-link" },
@@ -21,7 +24,9 @@ const AD_IMAGES = [
   { src: hiring,  title: "Hiring Poster",         category: "Employment",         color: "#ffd166", link: "https://www.canva.com/your-link" },
   { src: holiday, title: "Holiday Advisory",      category: "Announcement",       color: "#06d6a0", link: "https://www.canva.com/your-link" },
   { src: trend,   title: "Poster Trend",          category: "Trending",           color: "#ff6b6b", link: "https://www.canva.com/your-link" },
- 
+  { src: mvl1,    title: "Market Vendor Loan", category: "Poster Campaign",    color: "#7c5cfc", link: "https://www.canva.com/your-link" },
+  { src: mvl2,    title: "Market Vendor Loan", category: "Poster Campaign",    color: "#7c5cfc", link: "https://www.canva.com/your-link" },
+  { src: mvl3,    title: "Market Vendor Loan", category: "Poster Campaign",    color: "#7c5cfc", link: "https://www.canva.com/your-link" },
 ];
 
 const REELS = [
@@ -60,6 +65,27 @@ const REELS = [
     platform: "TikTok",
     embedUrl: "https://www.tiktok.com/embed/v2/7527231352937155847",
     desc: "Ang kwento ng QCredit at kung paano nila tinutulungan ang mga vendors.",
+  },
+
+   {
+    title: "QCredit Brand Story",
+    platform: "TikTok",
+    embedUrl: "https://www.tiktok.com/embed/v2/7685937952597249300",
+    desc: "Sari-sari store, bakery, hardware shop, at iba pa? Puwedeng mag-apply sa QCredit!",
+  },
+
+  {
+    title: "QCredit Reels - Summer Feel",
+    platform: "Facebook",
+    embedUrl: "https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F811851518145389%2F&show_text=false&width=560&t=0",
+    desc: "Isang kwento ng dedikasyon at inspirasyon. Kilalanin si Frisian Dela Cruz, ang masipag at mapagkakatiwalaang branch manager ng QCredit na patunay na ang tunay na lider ay naglilingkod mula sa puso.",
+  },
+
+  {
+    title: "Market Vendor Loan Ads",
+    platform: "YouTube",
+    embedUrl: "https://youtube.com/embed/jzkLq2zWFK8?si=zMYkFdBF0HLKtvXZ",
+    desc: "Bagong buwan, bagong opportunities! Simulan ang September nang may dagdag puhunan at mas malaking pangarap para sa negosyo.",
   },
 ];
 
@@ -307,7 +333,7 @@ export default function QCreditAdsPage() {
           QCredit Corp. across Facebook, TikTok, and YouTube.
         </p>
         <div className="qc-stats">
-          {[["3+","Platforms"],["50+","Creatives"],["2024–","Present"]].map(([num, label]) => (
+          {[["3+","Platforms"],["50+","Creatives"],["2024 - 2026","Present"]].map(([num, label]) => (
             <div className="qc-stat" key={label}>
               <div className="qc-stat-num">{num}</div>
               <div className="qc-stat-label">{label}</div>

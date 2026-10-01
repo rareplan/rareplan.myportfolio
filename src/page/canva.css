@@ -75,8 +75,13 @@ body {
 }
 
 .gallery-nav-tag {
-  color: #bcbcbc;
-  font-size: 14px;
+ font-size: 12px;
+  color: #a78bfa;
+  background: rgba(124, 92, 252, 0.12);
+  border: 1px solid rgba(124, 92, 252, 0.22);
+  border-radius: 20px;
+  padding: 5px 16px;
+  letter-spacing: 0.04em;
 }
 
 /* ───────────────── HERO ───────────────── */

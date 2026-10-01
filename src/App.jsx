@@ -10,8 +10,17 @@ import soc3 from "./image/soc3.png";
 import web1 from "./image/web1.png";
 import web2 from "./image/web2.png";
 import web3 from "./image/web3.png";
-import video from "./image/video.mp4";
-import { link } from "framer-motion/client";
+import busybee1 from "./image/busybee1.png";
+import busybee2 from "./image/busybee2.png";
+import busybee3 from "./image/busybee3.png";
+import busybee4 from "./image/busybee4.png";
+import qcreditBanner1 from "./image/qcreditbanner1.png";
+import qcreditBanner2 from "./image/qcreditbanner2.png";
+import clothing1 from "./image/clothing1.png";
+import clothing2 from "./image/clothing2.png";
+
+
+
 
 
 // ── DATA ──────────────────────────────────────────────
@@ -26,6 +35,7 @@ const NAV_LINKS = [
     href: "#my-design",
     dropdown: [
       { label: "My Design",   href: "#my-design",   internal: false },
+      { label: "Demo Video",  href: "/demo-video",   internal: true  },
       { label: "Canva Design",  href: "/canva",        internal: true  },
       { label: "QCredit ADs", href: "/qcredit-ads",  internal: true  },
     ],
@@ -144,6 +154,7 @@ const CERTS = [
   { icon: "🇵🇭", name: "Philippines Design Fest", issuer: "Seminar - 2025", link:"https://drive.google.com/file/d/1scLTAF7wuE91f2s6nXIQoq5hc_oJ_5om/view?usp=sharing"},
   { icon: "🤖", name: "Website UI/UX Designing using ChatGPT", issuer:"Simplilearn SkillUp 2026 (Code:10070011)", link:"https://drive.google.com/file/d/1aSPwIvoOCkjQOotGm_vuzWT79xYNLFVO/view?usp=sharing"},
   { icon: "🎨", name: "Web Designer Basic", issuer: "Simplilearn SkillUp 2026 (Code:10334198)", link:"https://drive.google.com/file/d/1I-Ho8EOIdwf8y_8909c0lxPR0wO2ULX9/view?usp=sharing" },
+  { icon: "💻", name: "Make Foundation Badge – Make Academy (2026)", issuer: "Skills: Automation, Data Mapping, Control Flow, Filter Design, No-Code Automation", link:"https://www.credly.com/badges/a750a7d2-dbf8-4020-bbae-0406c7b035b7/public_url" },
 
 ];
 
@@ -159,47 +170,14 @@ const CONTACT_LINKS = [
   { icon: "💾", label: "GitHub", value: "github.com/rareplan", href: "https://github.com/rareplan" },
 ];
 
+ 
 const CASE_STUDIES = [
-    {
-  id: "gospel",
-  num: "04",
-  tag: "Mobile App Design",
-  title: "The Music Gospel App",
-  subtitle: "A Modern Onboarding Experience for Worship Musicians",
-  color: "#a855f7",
-  role: "UI/UX Designer",
-  tools: ["Figma"],
-  images: [], 
-  video: video,
-  overview: "The Music Gospel is a mobile app concept designed for music enthusiasts and worship musicians. The project focuses on creating a simple and modern onboarding experience with Splash, Welcome, Login, and Sign Up screens.",
-  goal: "Design a clean, modern authentication flow that removes friction from onboarding while staying true to the musical and spiritual identity of the app.",
-  solution: "Designed a clean dark-themed interface with neon accents, intuitive navigation, and an easy authentication flow to provide a seamless user experience.",
-  highlights: [
-    { icon: "🌑", label: "Dark Theme", text: "Deep dark backgrounds with neon accent colors create a premium, modern feel suited for music and worship contexts." },
-    { icon: "✨", label: "Neon Accents", text: "Strategic use of glowing purple and teal accents guide the user's eye toward key actions like Login and Sign Up." },
-    { icon: "🔐", label: "Auth Flow", text: "Streamlined Splash → Welcome → Login → Sign Up screens minimize steps and reduce onboarding friction." },
-  ],
-  principles: [
-    "Simplicity — minimal fields and clear CTAs reduce cognitive load",
-    "Visual Identity — dark theme with neon accents reflects music and worship culture",
-    "Consistency — unified type scale and button styles across all screens",
-  ],
-},
-
-
-
-
-
-
-
-
-
 
   {
     id: "mvl",
     num: "01",
     tag: "UI/UX Design",
-    title: "MVL App",
+    title: "UI/UX MVL App",
     subtitle: "Streamlining Micro-Loans for Market Vendors",
     color: "#7c5cfc",
     role: "Lead UI/UX Designer",
@@ -219,7 +197,7 @@ const CASE_STUDIES = [
     id: "socmed",
     num: "02",
     tag: "Product Design",
-    title: "SocMed",
+    title: "UI/UX SocMed",
     subtitle: "Empowering Content Creators through Intuitive Management",
     color: "#00d9ff",
     role: "UI/UX Designer",
@@ -255,6 +233,137 @@ const CASE_STUDIES = [
     ],
     principles: ["Card-based info for scannable content", "Direct CTA turning education into lead generation", "Micro-copy making photography feel accessible to everyone"],
   },
+
+  {
+  id: "busybee",
+  num: "04",
+  tag: "Mobile App And Web Dashboard",
+  title: "BusyBee",
+  subtitle: "A Productivity Mobile App for Organizing Tasks and Staying Focused",
+  color: "#2f66e5",
+  role: "UI/UX Designer",
+  tools: ["Figma"],
+  images: [busybee1, busybee2, busybee3, busybee4],
+  overview: "Managing daily tasks can become overwhelming when users have to keep track of deadlines, priorities, and progress in different places. The challenge was designing a mobile experience that makes productivity simple, organized, and easy to manage on the go.",
+
+  goal: "Create a simple and intuitive mobile productivity app that helps users organize tasks, monitor their progress, and stay focused throughout the day.",
+
+  solution: "Designed a mobile-first experience with a clean dashboard that gives users an instant overview of their tasks, completed work, pending items, and overall productivity. Quick actions and bottom navigation make important features accessible while keeping the interface simple and easy to use.",
+
+  highlights: [
+
+    { icon: "📱", label: "Mobile-First Experience", text: "Designed around mobile interactions with accessible navigation, clear touch targets, and a layout optimized for smaller screens." },
+
+    { icon: "📋", label: "Task Organization", text: "Tasks are grouped with clear completion states, categories, and schedules so users can quickly understand what needs to be done." },
+
+    { icon: "📊", label: "Progress Tracking", text: "Visual progress indicators and productivity statistics help users see their daily accomplishments at a glance." },
+
+  ],
+
+  principles: ["Mobile-first layout for quick and convenient task management", "Bottom navigation for easy access to core features", "Clear visual hierarchy and card-based content for fast scanning"],
+
+},
+{
+  id: "qcredit-banner",
+  num: "05",
+  tag: "Website Banner",
+  title: "QCredit Website Banner",
+  subtitle: "A Promotional Website Banner Designed for a Financial Services Website",
+  color: "#e91d2d",
+  role: "UI/UX Designer & Visual Designer",
+  tools: ["Figma", "Adobe Photoshop"],
+  images: [qcreditBanner1, qcreditBanner2],
+  overview:
+    "The project focused on designing a website banner for QCredit that communicates the company's financial services in a clear, professional, and approachable way. The challenge was balancing corporate information, branding elements, and a strong call-to-action without making the banner feel overcrowded.",
+  goal:
+    "Create an engaging website banner that immediately communicates QCredit's financial services, establishes brand trust, and encourages visitors to take action through a prominent call-to-action.",
+  solution:
+    "Designed a clean split-layout banner that combines strong messaging on the left with a real-world QCredit branch image on the right. The composition uses QCredit's blue and red brand colors, strong typography, and a prominent 'APPLY NOW' button to create a clear visual hierarchy and guide users toward the primary action.",
+
+  highlights: [
+
+    {
+      icon: "🎯",
+      label: "Clear Visual Hierarchy",
+      text:
+        "Large headline typography establishes the main message first, followed by supporting copy and a clearly visible call-to-action."
+    },
+
+    {
+      icon: "🎨",
+      label: "Brand Consistency",
+      text:
+        "QCredit's blue, red, and white color palette was maintained throughout the banner to create a consistent and recognizable brand presence."
+    },
+
+    {
+      icon: "📸",
+      label: "Real-World Imagery",
+      text:
+        "A QCredit branch photograph was incorporated into the hero section to make the financial service feel more tangible, trustworthy, and accessible."
+    },
+
+  ],
+
+  principles: [
+    "Strong headline-to-CTA visual hierarchy",
+    "Brand-focused color and typography system",
+    "Real-world imagery to build trust",
+    "Minimal layout for quick information scanning",
+    "Clear CTA designed to encourage user action"
+  ],
+},
+
+{
+  id: "clothing-banner",
+  num: "06",
+  tag: "Website Banner",
+  title: "Clothing Shop Website Banner",
+  subtitle:
+    "A Fashion E-Commerce Website Banner Designed to Promote Style, Confidence, and New Collections",
+  color: "#ff4fa3",
+  role: "UI/UX Designer & Visual Designer",
+  tools: ["Figma", "Adobe Photoshop"],
+  images: [clothing1, clothing2],
+  overview:
+    "The project focused on designing a modern and visually engaging website banner for a clothing shop. The banner was created to showcase the brand's fashion style while providing users with a clear and engaging introduction to the online store.",
+  goal:
+    "Create an attractive website banner that captures attention, communicates the clothing brand's identity, and encourages users to explore the collection through a clear call-to-action.",
+  solution:
+    "Designed a clean fashion-focused hero banner combining a lifestyle model image, bold typography, brand navigation, supporting promotional text, and a prominent 'SHOP NOW' button. The layout uses navy blue, pink, and white to create a modern, stylish, and youthful visual identity.",
+  highlights: [
+
+    {
+      icon: "🎯",
+      label: "Clear Visual Hierarchy",
+      text:
+        "The large promotional headline creates an immediate focal point, followed by supporting text and a prominent 'SHOP NOW' button."
+    },
+
+    {
+      icon: "🎨",
+      label: "Modern Fashion Aesthetic",
+      text:
+        "A combination of navy blue, pink, and white creates a clean, stylish, and youthful visual direction suitable for a fashion brand."
+    },
+
+    {
+      icon: "👗",
+      label: "Lifestyle Imagery",
+      text:
+        "A fashion model was used as the main visual element to showcase the clothing style and create a more engaging shopping experience."
+    },
+
+  ],
+  principles: [
+    "Strong headline and CTA hierarchy",
+    "Modern and fashion-focused visual style",
+    "Balanced use of imagery and typography",
+    "Clean and minimal website layout",
+    "Clear navigation and call-to-action",
+    "Visual design focused on user engagement"
+  ],
+},
 ];
 
 // ── HOOKS ─────────────────────────────────────────────
@@ -729,14 +838,7 @@ function CaseStudyCard({ cs, delay }) {
         <ImageGallery images={cs.images} color={cs.color} title={cs.title} />
       )}
 
-      {cs.video && (
-        <div className="cs-section cs-video-section">
-          <div className="cs-section-label"><span>🎬</span> Demo Video</div>
-          <div className="cs-video-wrapper" style={{ borderColor: `${cs.color}30` }}>
-            <video controls src={cs.video} className="cs-video" />
-          </div>
-        </div>
-      )}
+    
 
       <div className="cs-section">
         <div className="cs-section-label"><span>📋</span> Overview</div>
