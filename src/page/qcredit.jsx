@@ -68,14 +68,14 @@ const REELS = [
   },
 
    {
-    title: "QCredit Brand Story",
+    title: "QCredit Reels",
     platform: "TikTok",
     embedUrl: "https://www.tiktok.com/embed/v2/7685937952597249300",
     desc: "Sari-sari store, bakery, hardware shop, at iba pa? Puwedeng mag-apply sa QCredit!",
   },
 
   {
-    title: "QCredit Reels - Summer Feel",
+    title: "Qwentong QCredit: Frisian Cabral Dela Cruz",
     platform: "Facebook",
     embedUrl: "https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F811851518145389%2F&show_text=false&width=560&t=0",
     desc: "Isang kwento ng dedikasyon at inspirasyon. Kilalanin si Frisian Dela Cruz, ang masipag at mapagkakatiwalaang branch manager ng QCredit na patunay na ang tunay na lider ay naglilingkod mula sa puso.",
