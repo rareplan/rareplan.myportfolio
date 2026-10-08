@@ -27,14 +27,13 @@ import clothing2 from "./image/clothing2.png";
 const NAV_LINKS = [
   { label: "home",       href: "#home" },
   { label: "skills",     href: "#skills" },
-  { label: "experience", href: "#experience" },
   { label: "projects",   href: "#projects" },
   { label: "certs",      href: "#certs" },
   {
     label: "my design",
     href: "#my-design",
     dropdown: [
-      { label: "My Design",   href: "#my-design",   internal: false },
+      { label: "UI/UX Design",   href: "#my-design",   internal: false },
       { label: "Demo Video",  href: "/demo-video",   internal: true  },
       { label: "Canva Design",  href: "/canva",        internal: true  },
       { label: "QCredit ADs", href: "/qcredit-ads",  internal: true  },
@@ -55,7 +54,7 @@ const SKILLS = [
     tags: ["HTML5", "CSS3", "JavaScript", "React JS", "Golang"],
   },
   {
-    icon: "",
+    icon: "💻",
     category: "Tools & Technologies",
     tags: ["GitHub", "Google Data Studio", "ManyChat", "Make (Integromat)", "PostgreSQL"],
   },
@@ -73,53 +72,7 @@ const SKILLS = [
   },
 ];
 
-const EXPERIENCES = [
-  {
-    role: "Graphic Designer & Marketing Officer",
-    company: "QCredit Corp.",
-    period: "Mar 2024 – Present",
-    items: [
-      "Designed promotional creatives for Facebook, TikTok, and YouTube campaigns",
-      'Created engaging video content for "Kwentong QCredit" customer stories',
-      "Produced social media graphics and UI layouts using Figma and Photoshop",
-      "Developed animated visuals using Jitter to improve ad engagement",
-      "Collaborated with marketing team to deliver customer-focused campaigns",
-    ],
-  },
-  {
-    role: "Data Analyst",
-    company: "Accenture, Inc.",
-    period: "Aug 2022 – Sept 2023",
-    items: [
-      "Processed and analyzed transactional data to support business operations",
-      "Identified patterns and insights for process improvement",
-      "Resolved data-related issues through debugging and analysis",
-      "Ensured accurate and timely release of processed data",
-    ],
-  },
-  {
-    role: "Developer I",
-    company: "FDS Asya Philippines Inc.",
-    period: "Feb 2021 – Mar 2022",
-    items: [
-      "Designed and developed UI for Whitelist Webtool using HTML, CSS, JavaScript",
-      "Integrated automation workflows using Integromat (Make)",
-      "Developed chatbot system and monitored performance data",
-      "Built interactive dashboards using Google Data Studio",
-      "Managed database scripts using PostgreSQL",
-    ],
-  },
-  {
-    role: "OJT – IT Support / Multimedia Assistant",
-    company: "Laguna State Polytechnic University",
-    period: "Sept 2019 – Dec 2019",
-    items: [
-      "Assisted in network installation and system setup",
-      "Designed event materials and multimedia presentations",
-      "Organized and managed alumni records and documents",
-    ],
-  },
-];
+
 
 const PROJECTS = [
   {
@@ -565,7 +518,7 @@ function Hero() {
             <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target="_blank" rel="noreferrer" className="social-link"><span>L</span> LinkIn</a>
           </div>
           <div className="stats-row">
-            {[["4+","years exp."],["3","companies"],["6","certifications"],["10+","tools mastered"]].map(([num, label]) => (
+            {[["4+","years exp."],["3","companies"],["12","certifications"],["10+","tools mastered"]].map(([num, label]) => (
               <div className="stat-item" key={label}>
                 <div className="stat-num">{num}</div>
                 <div className="stat-label">{label}</div>
@@ -638,42 +591,6 @@ function Skills() {
         <SectionHeader label="What I do" title="Skills &amp;<br/>Technologies" />
         <div className="skills-grid">
           {SKILLS.map((s) => <SkillCard key={s.category} {...s} />)}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ── EXPERIENCE ────────────────────────────────────────
-function TimelineItem({ role, company, period, items, delay, src }) {
-  const [ref, visible] = useReveal();
-  return (
-    <div ref={ref} className={`timeline-item ${visible ? "visible" : ""}`} style={{ transitionDelay: `${delay}s` }}>
-      <div className="timeline-dot" />
-      <div className="timeline-card">
-        {src && <img src={src} alt={company} className="timeline-logo" />}
-        <div className="timeline-header">
-          <div className="timeline-role">{role}</div>
-          <div className="timeline-period">{period}</div>
-        </div>
-        <div className="timeline-company">{company}</div>
-        <ul className="timeline-list">
-          {items.map((item, i) => <li key={i}>{item}</li>)}
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-function Experience() {
-  return (
-    <section className="experience-section" id="experience">
-      <div className="wrapper">
-        <SectionHeader label="Career path" title="Work<br/>Experience" />
-        <div className="timeline">
-          {EXPERIENCES.map((exp, i) => (
-            <TimelineItem key={exp.company} {...exp} delay={i * 0.1} />
-          ))}
         </div>
       </div>
     </section>
@@ -969,7 +886,6 @@ export default function App() {
       <Hero />
       <Marquee />
       <Skills />
-      <Experience />
       <Projects />
       <Certs />
       <MyDesign />
