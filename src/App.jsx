@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
-import profile from "./image/profile.jpeg";  
+import profile from "./image/profile.jpeg";
 import ui1 from "./image/ui1.png";
 import ui2 from "./image/ui2.png";
 import ui3 from "./image/ui3.png";
@@ -18,10 +18,9 @@ import qcreditBanner1 from "./image/qcreditbanner1.png";
 import qcreditBanner2 from "./image/qcreditbanner2.png";
 import clothing1 from "./image/clothing1.png";
 import clothing2 from "./image/clothing2.png";
-
-
-
-
+import pagesoc1 from "./image/pagesoc1.png";
+import pagesoc2 from "./image/pagesoc2.png";
+import pagesoc3 from "./image/pagesoc3.png";
 
 // ── DATA ──────────────────────────────────────────────
 const NAV_LINKS = [
@@ -58,21 +57,17 @@ const SKILLS = [
     category: "Tools & Technologies",
     tags: ["GitHub", "Google Data Studio", "ManyChat", "Make (Integromat)", "PostgreSQL"],
   },
-
   {
     icon: "💻🤖",
     category: "AI Tools",
     tags: ["ChatGPT", "Claude AI", "Gemini", "GitHub Copilot"],
   },
-
   {
     icon: "🎬",
     category: "Video Editing & AI Tools",
     tags: ["Filmora", "Canva", "Jitter", "Capcut"],
   },
 ];
-
-
 
 const PROJECTS = [
   {
@@ -108,7 +103,6 @@ const CERTS = [
   { icon: "🤖", name: "Website UI/UX Designing using ChatGPT", issuer:"Simplilearn SkillUp 2026 (Code:10070011)", link:"https://drive.google.com/file/d/1aSPwIvoOCkjQOotGm_vuzWT79xYNLFVO/view?usp=sharing"},
   { icon: "🎨", name: "Web Designer Basic", issuer: "Simplilearn SkillUp 2026 (Code:10334198)", link:"https://drive.google.com/file/d/1I-Ho8EOIdwf8y_8909c0lxPR0wO2ULX9/view?usp=sharing" },
   { icon: "💻", name: "Make Foundation Badge – Make Academy (2026)", issuer: "Skills: Automation, Data Mapping, Control Flow, Filter Design, No-Code Automation", link:"https://www.credly.com/badges/a750a7d2-dbf8-4020-bbae-0406c7b035b7/public_url" },
-
 ];
 
 const MARQUEE_ITEMS = [
@@ -123,9 +117,33 @@ const CONTACT_LINKS = [
   { icon: "💾", label: "GitHub", value: "github.com/rareplan", href: "https://github.com/rareplan" },
 ];
 
- 
-const CASE_STUDIES = [
+// TODO: palitan ang name, url at image ng tunay mong 3 Facebook pages
+// (image = preview picture ng page, pwede mong i-import mula sa ./image)
+const SOCIAL_LINKS = [
+  {
+    name: "QCREDIT CORP.",
+    label: "Facebook page",
+    url: "https://www.facebook.com/qcreditcorpofficial",
+    image: pagesoc1,
+    color: "#1877F2",
+  },
+  {
+    name: "QCREDIT CAREERS.",
+    label: "Facebook Page",
+    url: "https://www.facebook.com/qcreditcareers",
+    image: pagesoc2,
+    color: "#7c5cfc",
+  },
+  {
+    name: "JCGS CHURCH",
+    label: "Facebook Page",
+    url: "https://www.facebook.com/jcgsbanago",
+    image: pagesoc3,
+    color: "#00d9ff",
+  },
+];
 
+const CASE_STUDIES = [
   {
     id: "mvl",
     num: "01",
@@ -186,137 +204,79 @@ const CASE_STUDIES = [
     ],
     principles: ["Card-based info for scannable content", "Direct CTA turning education into lead generation", "Micro-copy making photography feel accessible to everyone"],
   },
-
   {
-  id: "busybee",
-  num: "04",
-  tag: "Mobile App And Web Dashboard",
-  title: "UI/UX BusyBee",
-  subtitle: "A Productivity Mobile App for Organizing Tasks and Staying Focused",
-  color: "#2f66e5",
-  role: "UI/UX Designer",
-  tools: ["Figma"],
-  images: [busybee3,busybee1,busybee2,busybee4],
-  overview: "Managing daily tasks can become overwhelming when users have to keep track of deadlines, priorities, and progress in different places. The challenge was designing a mobile experience that makes productivity simple, organized, and easy to manage on the go.",
-
-  goal: "Create a simple and intuitive mobile productivity app that helps users organize tasks, monitor their progress, and stay focused throughout the day.",
-
-  solution: "Designed a mobile-first experience with a clean dashboard that gives users an instant overview of their tasks, completed work, pending items, and overall productivity. Quick actions and bottom navigation make important features accessible while keeping the interface simple and easy to use.",
-
-  highlights: [
-
-    { icon: "📱", label: "Mobile-First Experience", text: "Designed around mobile interactions with accessible navigation, clear touch targets, and a layout optimized for smaller screens." },
-
-    { icon: "📋", label: "Task Organization", text: "Tasks are grouped with clear completion states, categories, and schedules so users can quickly understand what needs to be done." },
-
-    { icon: "📊", label: "Progress Tracking", text: "Visual progress indicators and productivity statistics help users see their daily accomplishments at a glance." },
-
-  ],
-
-  principles: ["Mobile-first layout for quick and convenient task management", "Bottom navigation for easy access to core features", "Clear visual hierarchy and card-based content for fast scanning"],
-
-},
-{
-  id: "qcredit-banner",
-  num: "05",
-  tag: "Website Banner",
-  title: "QCredit Website Banner",
-  subtitle: "A Promotional Website Banner Designed for a Financial Services Website",
-  color: "#e91d2d",
-  role: "UI/UX Designer & Visual Designer",
-  tools: ["Figma", "Adobe Photoshop"],
-  images: [qcreditBanner1, qcreditBanner2],
-  overview:
-    "The project focused on designing a website banner for QCredit that communicates the company's financial services in a clear, professional, and approachable way. The challenge was balancing corporate information, branding elements, and a strong call-to-action without making the banner feel overcrowded.",
-  goal:
-    "Create an engaging website banner that immediately communicates QCredit's financial services, establishes brand trust, and encourages visitors to take action through a prominent call-to-action.",
-  solution:
-    "Designed a clean split-layout banner that combines strong messaging on the left with a real-world QCredit branch image on the right. The composition uses QCredit's blue and red brand colors, strong typography, and a prominent 'APPLY NOW' button to create a clear visual hierarchy and guide users toward the primary action.",
-
-  highlights: [
-
-    {
-      icon: "🎯",
-      label: "Clear Visual Hierarchy",
-      text:
-        "Large headline typography establishes the main message first, followed by supporting copy and a clearly visible call-to-action."
-    },
-
-    {
-      icon: "🎨",
-      label: "Brand Consistency",
-      text:
-        "QCredit's blue, red, and white color palette was maintained throughout the banner to create a consistent and recognizable brand presence."
-    },
-
-    {
-      icon: "📸",
-      label: "Real-World Imagery",
-      text:
-        "A QCredit branch photograph was incorporated into the hero section to make the financial service feel more tangible, trustworthy, and accessible."
-    },
-
-  ],
-
-  principles: [
-    "Strong headline-to-CTA visual hierarchy",
-    "Brand-focused color and typography system",
-    "Real-world imagery to build trust",
-    "Minimal layout for quick information scanning",
-    "Clear CTA designed to encourage user action"
-  ],
-},
-
-{
-  id: "clothing-banner",
-  num: "06",
-  tag: "Website Banner",
-  title: "Clothing Shop Website Banner",
-  subtitle:
-    "A Fashion E-Commerce Website Banner Designed to Promote Style, Confidence, and New Collections",
-  color: "#ff4fa3",
-  role: "UI/UX Designer & Visual Designer",
-  tools: ["Figma", "Adobe Photoshop"],
-  images: [clothing1, clothing2],
-  overview:
-    "The project focused on designing a modern and visually engaging website banner for a clothing shop. The banner was created to showcase the brand's fashion style while providing users with a clear and engaging introduction to the online store.",
-  goal:
-    "Create an attractive website banner that captures attention, communicates the clothing brand's identity, and encourages users to explore the collection through a clear call-to-action.",
-  solution:
-    "Designed a clean fashion-focused hero banner combining a lifestyle model image, bold typography, brand navigation, supporting promotional text, and a prominent 'SHOP NOW' button. The layout uses navy blue, pink, and white to create a modern, stylish, and youthful visual identity.",
-  highlights: [
-
-    {
-      icon: "🎯",
-      label: "Clear Visual Hierarchy",
-      text:
-        "The large promotional headline creates an immediate focal point, followed by supporting text and a prominent 'SHOP NOW' button."
-    },
-
-    {
-      icon: "🎨",
-      label: "Modern Fashion Aesthetic",
-      text:
-        "A combination of navy blue, pink, and white creates a clean, stylish, and youthful visual direction suitable for a fashion brand."
-    },
-
-    {
-      icon: "👗",
-      label: "Lifestyle Imagery",
-      text:
-        "A fashion model was used as the main visual element to showcase the clothing style and create a more engaging shopping experience."
-    },
-
-  ],
-  principles: [
-    "Strong headline and CTA hierarchy",
-    "Modern and fashion-focused visual style",
-    "Balanced use of imagery and typography",
-    "Clean and minimal website layout",
-    "Clear navigation and call-to-action",
-    "Visual design focused on user engagement"
-  ],
-},
+    id: "busybee",
+    num: "04",
+    tag: "Mobile App And Web Dashboard",
+    title: "UI/UX BusyBee",
+    subtitle: "A Productivity Mobile App for Organizing Tasks and Staying Focused",
+    color: "#2f66e5",
+    role: "UI/UX Designer",
+    tools: ["Figma"],
+    images: [busybee3, busybee1, busybee2, busybee4],
+    overview: "Managing daily tasks can become overwhelming when users have to keep track of deadlines, priorities, and progress in different places. The challenge was designing a mobile experience that makes productivity simple, organized, and easy to manage on the go.",
+    goal: "Create a simple and intuitive mobile productivity app that helps users organize tasks, monitor their progress, and stay focused throughout the day.",
+    solution: "Designed a mobile-first experience with a clean dashboard that gives users an instant overview of their tasks, completed work, pending items, and overall productivity. Quick actions and bottom navigation make important features accessible while keeping the interface simple and easy to use.",
+    highlights: [
+      { icon: "📱", label: "Mobile-First Experience", text: "Designed around mobile interactions with accessible navigation, clear touch targets, and a layout optimized for smaller screens." },
+      { icon: "📋", label: "Task Organization", text: "Tasks are grouped with clear completion states, categories, and schedules so users can quickly understand what needs to be done." },
+      { icon: "📊", label: "Progress Tracking", text: "Visual progress indicators and productivity statistics help users see their daily accomplishments at a glance." },
+    ],
+    principles: ["Mobile-first layout for quick and convenient task management", "Bottom navigation for easy access to core features", "Clear visual hierarchy and card-based content for fast scanning"],
+  },
+  {
+    id: "qcredit-banner",
+    num: "05",
+    tag: "Website Banner",
+    title: "QCredit Website Banner",
+    subtitle: "A Promotional Website Banner Designed for a Financial Services Website",
+    color: "#e91d2d",
+    role: "UI/UX Designer & Visual Designer",
+    tools: ["Figma", "Adobe Photoshop"],
+    images: [qcreditBanner1, qcreditBanner2],
+    overview: "The project focused on designing a website banner for QCredit that communicates the company's financial services in a clear, professional, and approachable way. The challenge was balancing corporate information, branding elements, and a strong call-to-action without making the banner feel overcrowded.",
+    goal: "Create an engaging website banner that immediately communicates QCredit's financial services, establishes brand trust, and encourages visitors to take action through a prominent call-to-action.",
+    solution: "Designed a clean split-layout banner that combines strong messaging on the left with a real-world QCredit branch image on the right. The composition uses QCredit's blue and red brand colors, strong typography, and a prominent 'APPLY NOW' button to create a clear visual hierarchy and guide users toward the primary action.",
+    highlights: [
+      { icon: "🎯", label: "Clear Visual Hierarchy", text: "Large headline typography establishes the main message first, followed by supporting copy and a clearly visible call-to-action." },
+      { icon: "🎨", label: "Brand Consistency", text: "QCredit's blue, red, and white color palette was maintained throughout the banner to create a consistent and recognizable brand presence." },
+      { icon: "📸", label: "Real-World Imagery", text: "A QCredit branch photograph was incorporated into the hero section to make the financial service feel more tangible, trustworthy, and accessible." },
+    ],
+    principles: [
+      "Strong headline-to-CTA visual hierarchy",
+      "Brand-focused color and typography system",
+      "Real-world imagery to build trust",
+      "Minimal layout for quick information scanning",
+      "Clear CTA designed to encourage user action",
+    ],
+  },
+  {
+    id: "clothing-banner",
+    num: "06",
+    tag: "Website Banner",
+    title: "Clothing Shop Website Banner",
+    subtitle: "A Fashion E-Commerce Website Banner Designed to Promote Style, Confidence, and New Collections",
+    color: "#ff4fa3",
+    role: "UI/UX Designer & Visual Designer",
+    tools: ["Figma", "Adobe Photoshop"],
+    images: [clothing1, clothing2],
+    overview: "The project focused on designing a modern and visually engaging website banner for a clothing shop. The banner was created to showcase the brand's fashion style while providing users with a clear and engaging introduction to the online store.",
+    goal: "Create an attractive website banner that captures attention, communicates the clothing brand's identity, and encourages users to explore the collection through a clear call-to-action.",
+    solution: "Designed a clean fashion-focused hero banner combining a lifestyle model image, bold typography, brand navigation, supporting promotional text, and a prominent 'SHOP NOW' button. The layout uses navy blue, pink, and white to create a modern, stylish, and youthful visual identity.",
+    highlights: [
+      { icon: "🎯", label: "Clear Visual Hierarchy", text: "The large promotional headline creates an immediate focal point, followed by supporting text and a prominent 'SHOP NOW' button." },
+      { icon: "🎨", label: "Modern Fashion Aesthetic", text: "A combination of navy blue, pink, and white creates a clean, stylish, and youthful visual direction suitable for a fashion brand." },
+      { icon: "👗", label: "Lifestyle Imagery", text: "A fashion model was used as the main visual element to showcase the clothing style and create a more engaging shopping experience." },
+    ],
+    principles: [
+      "Strong headline and CTA hierarchy",
+      "Modern and fashion-focused visual style",
+      "Balanced use of imagery and typography",
+      "Clean and minimal website layout",
+      "Clear navigation and call-to-action",
+      "Visual design focused on user engagement",
+    ],
+  },
 ];
 
 // ── HOOKS ─────────────────────────────────────────────
@@ -527,7 +487,6 @@ function Hero() {
           </div>
         </div>
 
-        {/* ── AVATAR — replaced initials with photo ── */}
         <div className="hero-avatar">
           <div className="avatar-ring">
             <div className="avatar-inner">
@@ -535,7 +494,6 @@ function Hero() {
             </div>
           </div>
         </div>
-
       </div>
       <div className="scroll-indicator">
         <div className="scroll-line" />
@@ -679,6 +637,7 @@ function ImageGallery({ images, color, title }) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lightbox, active]);
 
   return (
@@ -733,7 +692,6 @@ function ImageGallery({ images, color, title }) {
   );
 }
 
-
 // ── CASE STUDY CARD ───────────────────────────────────
 function CaseStudyCard({ cs, delay }) {
   const [ref, visible] = useReveal();
@@ -754,8 +712,6 @@ function CaseStudyCard({ cs, delay }) {
       {cs.images && cs.images.length > 0 && (
         <ImageGallery images={cs.images} color={cs.color} title={cs.title} />
       )}
-
-    
 
       <div className="cs-section">
         <div className="cs-section-label"><span>📋</span> Overview</div>
@@ -809,6 +765,48 @@ function CaseStudyCard({ cs, delay }) {
   );
 }
 
+// ── SOCIAL LINKS (3 animated boxes) ───────────────────
+function SocialLinks() {
+  const [headerRef, headerVisible] = useReveal();
+  return (
+    <section className="socials-section" id="socials">
+      <div className="wrapper">
+        <div ref={headerRef} className={`mydesign-header ${headerVisible ? "hv" : ""}`}>
+          <div className="section-label">Follow my work</div>
+          <h2 className="section-title">Social <span className="accent-word">Pages</span></h2>
+          <p className="mydesign-sub">
+            Explore my three Facebook pages to view my advertising campaign designs, promotional graphics, and marketing videos.
+          </p>
+        </div>
+
+        <div className="social-wrapper">
+          {SOCIAL_LINKS.map((item, index) => (
+            <a
+              key={item.name}
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-box"
+              style={{
+                "--bg": item.color,
+                animationDelay: `${index * 0.2}s`,
+              }}
+            >
+              <div className="social-img-wrap">
+                <img src={item.image} alt={item.name} className="social-img" />
+              </div>
+              <div className="social-info">
+                <span className="social-name">{item.name}</span>
+                <span className="social-label">{item.label}</span>
+                <span className="social-visit">Visit page ↗</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 // ── MY DESIGN SECTION ─────────────────────────────────
 function MyDesign() {
@@ -828,7 +826,6 @@ function MyDesign() {
     </section>
   );
 }
-
 
 // ── CONTACT ───────────────────────────────────────────
 function Contact() {
@@ -888,6 +885,7 @@ export default function App() {
       <Skills />
       <Projects />
       <Certs />
+      <SocialLinks />
       <MyDesign />
       <Contact />
       <Footer />

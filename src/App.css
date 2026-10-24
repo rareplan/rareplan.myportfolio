@@ -383,3 +383,103 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
   max-height: 480px;
   object-fit: contain;
 }
+
+.socials-section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.social-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.social-box {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid color-mix(in srgb, var(--bg) 40%, transparent);
+  opacity: 0;
+  animation: socSlideUp 0.6s ease forwards, socFloat 3s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.social-box:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: var(--bg);
+  box-shadow: 0 18px 36px color-mix(in srgb, var(--bg) 35%, transparent);
+}
+
+.social-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #111;
+}
+
+.social-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.social-box:hover .social-img {
+  transform: scale(1.1);
+}
+
+.social-img-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, color-mix(in srgb, var(--bg) 55%, transparent), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.social-box:hover .social-img-wrap::after {
+  opacity: 1;
+}
+
+.social-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px 22px;
+}
+
+.social-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.social-label {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.social-visit {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--bg);
+}
+
+@keyframes socSlideUp {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes socFloat {
+  0%, 100% { margin-top: 0; }
+  50%      { margin-top: -8px; }
+}
