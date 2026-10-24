@@ -28,6 +28,7 @@ const NAV_LINKS = [
   { label: "skills",     href: "#skills" },
   { label: "projects",   href: "#projects" },
   { label: "certs",      href: "#certs" },
+  { label: "socmed",     href: "#socials" },
   {
     label: "my design",
     href: "#my-design",

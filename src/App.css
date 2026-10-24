@@ -406,8 +406,8 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
   color: #fff;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid color-mix(in srgb, var(--bg) 40%, transparent);
-  opacity: 0;
-  animation: socSlideUp 0.6s ease forwards, socFloat 3s ease-in-out infinite;
+  /* backwards (hindi forwards) para gumana pa rin ang hover */
+  animation: socSlideUp 0.6s ease backwards, socFloat 3s ease-in-out infinite;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
